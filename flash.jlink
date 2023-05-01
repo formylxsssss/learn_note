@@ -1,0 +1,7 @@
+speed 2400
+si swd
+connect
+loadfile build/mb_sensor_board_stm32.hex
+r
+g
+qc
