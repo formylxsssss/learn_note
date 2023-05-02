@@ -1,4 +1,4 @@
-build/main.o: Core/Src/main.c Core/Inc/main.h \
+build/mpu6050.o: sensor_drive/mpu6050.c \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h \
  Core/Inc/stm32f1xx_hal_conf.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rcc.h \
@@ -21,28 +21,9 @@ build/main.o: Core/Src/main.c Core/Inc/main.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h \
  Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h \
- Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h \
- Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h \
- Core/Inc/FreeRTOSConfig.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/portable.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h \
- Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/timers.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h \
- Middlewares/Third_Party/FreeRTOS/Source/include/timers.h Core/Inc/i2c.h \
- Core/Inc/main.h Core/Inc/spi.h Core/Inc/usart.h Core/Inc/gpio.h \
- sensor_drive/xgp847.h
-
-Core/Inc/main.h:
+ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h Core/Inc/i2c.h \
+ Core/Inc/main.h ARM_SEGGER_RTT/SEGGER_RTT.h \
+ ARM_SEGGER_RTT/SEGGER_RTT_Conf.h sensor_drive/mpu6050.h
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h:
 
@@ -94,48 +75,12 @@ Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h:
 
 Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h:
 
-Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
-
-Core/Inc/FreeRTOSConfig.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/portable.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM3/portmacro.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h:
-
-Middlewares/Third_Party/FreeRTOS/Source/include/timers.h:
-
 Core/Inc/i2c.h:
 
 Core/Inc/main.h:
 
-Core/Inc/spi.h:
+ARM_SEGGER_RTT/SEGGER_RTT.h:
 
-Core/Inc/usart.h:
+ARM_SEGGER_RTT/SEGGER_RTT_Conf.h:
 
-Core/Inc/gpio.h:
-
-sensor_drive/xgp847.h:
+sensor_drive/mpu6050.h:

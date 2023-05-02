@@ -1,0 +1,456 @@
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"power_measure.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.global	__aeabi_i2d
+  16              		.global	__aeabi_dmul
+  17              		.global	__aeabi_dadd
+  18              		.global	__aeabi_d2f
+  19              		.section	.text.get_batter_percent,"ax",%progbits
+  20              		.align	1
+  21              		.global	get_batter_percent
+  22              		.arch armv7-m
+  23              		.syntax unified
+  24              		.thumb
+  25              		.thumb_func
+  26              		.fpu softvfp
+  28              	get_batter_percent:
+  29              	.LVL0:
+  30              	.LFB65:
+  31              		.file 1 "sensor_drive/power_measure.c"
+   1:sensor_drive/power_measure.c **** #include <stddef.h>
+   2:sensor_drive/power_measure.c **** #include <stdint.h>
+   3:sensor_drive/power_measure.c **** #include <stdlib.h>
+   4:sensor_drive/power_measure.c **** #include "i2c.h"
+   5:sensor_drive/power_measure.c **** #include "SEGGER_RTT.h"
+   6:sensor_drive/power_measure.c **** #include "stm32f1xx_hal.h"
+   7:sensor_drive/power_measure.c **** #include "power_measure.h"
+   8:sensor_drive/power_measure.c **** 
+   9:sensor_drive/power_measure.c **** int get_batter_percent(float *percent)
+  10:sensor_drive/power_measure.c **** {
+  32              		.loc 1 10 1 view -0
+  33              		.cfi_startproc
+  34              		@ args = 0, pretend = 0, frame = 8
+  35              		@ frame_needed = 0, uses_anonymous_args = 0
+  36              		.loc 1 10 1 is_stmt 0 view .LVU1
+  37 0000 2DE9F041 		push	{r4, r5, r6, r7, r8, lr}
+  38              	.LCFI0:
+  39              		.cfi_def_cfa_offset 24
+  40              		.cfi_offset 4, -24
+  41              		.cfi_offset 5, -20
+  42              		.cfi_offset 6, -16
+  43              		.cfi_offset 7, -12
+  44              		.cfi_offset 8, -8
+  45              		.cfi_offset 14, -4
+  46 0004 86B0     		sub	sp, sp, #24
+  47              	.LCFI1:
+  48              		.cfi_def_cfa_offset 48
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 2
+
+
+  49 0006 0546     		mov	r5, r0
+  11:sensor_drive/power_measure.c ****     HAL_StatusTypeDef get_batter_status;
+  50              		.loc 1 11 5 is_stmt 1 view .LVU2
+  12:sensor_drive/power_measure.c ****     uint8_t buffer[2] = {0};
+  51              		.loc 1 12 5 view .LVU3
+  52              		.loc 1 12 13 is_stmt 0 view .LVU4
+  53 0008 0023     		movs	r3, #0
+  54 000a ADF81430 		strh	r3, [sp, #20]	@ movhi
+  13:sensor_drive/power_measure.c ****     get_batter_status = HAL_I2C_Mem_Read(&hi2c1, MAX_17043_ADDER, MAX17043_SOC_MSB, I2C_MEMADD_SIZE
+  55              		.loc 1 13 5 is_stmt 1 view .LVU5
+  56              		.loc 1 13 25 is_stmt 0 view .LVU6
+  57 000e 0422     		movs	r2, #4
+  58 0010 0292     		str	r2, [sp, #8]
+  59 0012 0223     		movs	r3, #2
+  60 0014 0193     		str	r3, [sp, #4]
+  61 0016 05AB     		add	r3, sp, #20
+  62 0018 0093     		str	r3, [sp]
+  63 001a 1023     		movs	r3, #16
+  64 001c 6C21     		movs	r1, #108
+  65 001e 1148     		ldr	r0, .L5
+  66              	.LVL1:
+  67              		.loc 1 13 25 view .LVU7
+  68 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+  69              	.LVL2:
+  70 0024 0446     		mov	r4, r0
+  71              	.LVL3:
+  14:sensor_drive/power_measure.c ****     // get_batter_status = HAL_I2C_Mem_Read(&hi2c1, MAX_17043_ADDER, MAX17043_SOC_LSB, I2C_MEMADD_S
+  15:sensor_drive/power_measure.c ****     *percent = buffer[0] + buffer[1] / 256.0;
+  72              		.loc 1 15 5 is_stmt 1 view .LVU8
+  73              		.loc 1 15 22 is_stmt 0 view .LVU9
+  74 0026 9DF81480 		ldrb	r8, [sp, #20]	@ zero_extendqisi2
+  75              		.loc 1 15 38 view .LVU10
+  76 002a 9DF81500 		ldrb	r0, [sp, #21]	@ zero_extendqisi2
+  77 002e FFF7FEFF 		bl	__aeabi_i2d
+  78              	.LVL4:
+  79 0032 0022     		movs	r2, #0
+  80 0034 0C4B     		ldr	r3, .L5+4
+  81 0036 FFF7FEFF 		bl	__aeabi_dmul
+  82              	.LVL5:
+  83 003a 0646     		mov	r6, r0
+  84 003c 0F46     		mov	r7, r1
+  85              		.loc 1 15 26 view .LVU11
+  86 003e 4046     		mov	r0, r8
+  87 0040 FFF7FEFF 		bl	__aeabi_i2d
+  88              	.LVL6:
+  89 0044 3246     		mov	r2, r6
+  90 0046 3B46     		mov	r3, r7
+  91 0048 FFF7FEFF 		bl	__aeabi_dadd
+  92              	.LVL7:
+  93 004c FFF7FEFF 		bl	__aeabi_d2f
+  94              	.LVL8:
+  95              		.loc 1 15 14 view .LVU12
+  96 0050 2860     		str	r0, [r5]	@ float
+  16:sensor_drive/power_measure.c ****     if (get_batter_status == HAL_OK)
+  97              		.loc 1 16 5 is_stmt 1 view .LVU13
+  98              		.loc 1 16 8 is_stmt 0 view .LVU14
+  99 0052 1CB9     		cbnz	r4, .L3
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 3
+
+
+  17:sensor_drive/power_measure.c ****     {
+  18:sensor_drive/power_measure.c ****         return 0;
+ 100              		.loc 1 18 16 view .LVU15
+ 101 0054 0020     		movs	r0, #0
+ 102              	.L1:
+  19:sensor_drive/power_measure.c ****     }
+  20:sensor_drive/power_measure.c ****     else
+  21:sensor_drive/power_measure.c ****     {
+  22:sensor_drive/power_measure.c ****         return -1;
+  23:sensor_drive/power_measure.c ****     }
+  24:sensor_drive/power_measure.c **** }
+ 103              		.loc 1 24 1 view .LVU16
+ 104 0056 06B0     		add	sp, sp, #24
+ 105              	.LCFI2:
+ 106              		.cfi_remember_state
+ 107              		.cfi_def_cfa_offset 24
+ 108              		@ sp needed
+ 109 0058 BDE8F081 		pop	{r4, r5, r6, r7, r8, pc}
+ 110              	.LVL9:
+ 111              	.L3:
+ 112              	.LCFI3:
+ 113              		.cfi_restore_state
+  22:sensor_drive/power_measure.c ****     }
+ 114              		.loc 1 22 16 view .LVU17
+ 115 005c 4FF0FF30 		mov	r0, #-1
+ 116 0060 F9E7     		b	.L1
+ 117              	.L6:
+ 118 0062 00BF     		.align	2
+ 119              	.L5:
+ 120 0064 00000000 		.word	hi2c1
+ 121 0068 0000703F 		.word	1064304640
+ 122              		.cfi_endproc
+ 123              	.LFE65:
+ 125              		.section	.text.power_mesure_restart,"ax",%progbits
+ 126              		.align	1
+ 127              		.global	power_mesure_restart
+ 128              		.syntax unified
+ 129              		.thumb
+ 130              		.thumb_func
+ 131              		.fpu softvfp
+ 133              	power_mesure_restart:
+ 134              	.LFB66:
+  25:sensor_drive/power_measure.c **** 
+  26:sensor_drive/power_measure.c **** int power_mesure_restart(void)
+  27:sensor_drive/power_measure.c **** {
+ 135              		.loc 1 27 1 is_stmt 1 view -0
+ 136              		.cfi_startproc
+ 137              		@ args = 0, pretend = 0, frame = 8
+ 138              		@ frame_needed = 0, uses_anonymous_args = 0
+ 139 0000 00B5     		push	{lr}
+ 140              	.LCFI4:
+ 141              		.cfi_def_cfa_offset 4
+ 142              		.cfi_offset 14, -4
+ 143 0002 87B0     		sub	sp, sp, #28
+ 144              	.LCFI5:
+ 145              		.cfi_def_cfa_offset 32
+  28:sensor_drive/power_measure.c ****     HAL_StatusTypeDef restart_status;
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 4
+
+
+ 146              		.loc 1 28 5 view .LVU19
+  29:sensor_drive/power_measure.c ****     uint8_t buffer[2] = {0x00, 0x54};
+ 147              		.loc 1 29 5 view .LVU20
+ 148              		.loc 1 29 13 is_stmt 0 view .LVU21
+ 149 0004 4FF4A843 		mov	r3, #21504
+ 150 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+  30:sensor_drive/power_measure.c ****     restart_status = HAL_I2C_Mem_Write(&hi2c1, MAX_17043_ADDER, MAX17043_COMMAND_MSB, I2C_MEMADD_SI
+ 151              		.loc 1 30 5 is_stmt 1 view .LVU22
+ 152              		.loc 1 30 22 is_stmt 0 view .LVU23
+ 153 000c 0423     		movs	r3, #4
+ 154 000e 0293     		str	r3, [sp, #8]
+ 155 0010 0223     		movs	r3, #2
+ 156 0012 0193     		str	r3, [sp, #4]
+ 157 0014 05AB     		add	r3, sp, #20
+ 158 0016 0093     		str	r3, [sp]
+ 159 0018 1023     		movs	r3, #16
+ 160 001a FE22     		movs	r2, #254
+ 161 001c 6C21     		movs	r1, #108
+ 162 001e 0548     		ldr	r0, .L12
+ 163 0020 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 164              	.LVL10:
+  31:sensor_drive/power_measure.c ****     if (restart_status == HAL_OK)
+ 165              		.loc 1 31 5 is_stmt 1 view .LVU24
+ 166              		.loc 1 31 8 is_stmt 0 view .LVU25
+ 167 0024 10B9     		cbnz	r0, .L11
+ 168              	.LVL11:
+ 169              	.L7:
+  32:sensor_drive/power_measure.c ****     {
+  33:sensor_drive/power_measure.c ****         return 0;
+  34:sensor_drive/power_measure.c ****     }
+  35:sensor_drive/power_measure.c ****     else
+  36:sensor_drive/power_measure.c ****     {
+  37:sensor_drive/power_measure.c ****         return -1;
+  38:sensor_drive/power_measure.c ****     }
+  39:sensor_drive/power_measure.c **** }
+ 170              		.loc 1 39 1 view .LVU26
+ 171 0026 07B0     		add	sp, sp, #28
+ 172              	.LCFI6:
+ 173              		.cfi_remember_state
+ 174              		.cfi_def_cfa_offset 4
+ 175              		@ sp needed
+ 176 0028 5DF804FB 		ldr	pc, [sp], #4
+ 177              	.LVL12:
+ 178              	.L11:
+ 179              	.LCFI7:
+ 180              		.cfi_restore_state
+  37:sensor_drive/power_measure.c ****     }
+ 181              		.loc 1 37 16 view .LVU27
+ 182 002c 4FF0FF30 		mov	r0, #-1
+ 183              	.LVL13:
+  37:sensor_drive/power_measure.c ****     }
+ 184              		.loc 1 37 16 view .LVU28
+ 185 0030 F9E7     		b	.L7
+ 186              	.L13:
+ 187 0032 00BF     		.align	2
+ 188              	.L12:
+ 189 0034 00000000 		.word	hi2c1
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 5
+
+
+ 190              		.cfi_endproc
+ 191              	.LFE66:
+ 193              		.section	.text.set_alert_threshold,"ax",%progbits
+ 194              		.align	1
+ 195              		.global	set_alert_threshold
+ 196              		.syntax unified
+ 197              		.thumb
+ 198              		.thumb_func
+ 199              		.fpu softvfp
+ 201              	set_alert_threshold:
+ 202              	.LVL14:
+ 203              	.LFB67:
+  40:sensor_drive/power_measure.c **** 
+  41:sensor_drive/power_measure.c **** int set_alert_threshold(uint8_t data)
+  42:sensor_drive/power_measure.c **** {
+ 204              		.loc 1 42 1 is_stmt 1 view -0
+ 205              		.cfi_startproc
+ 206              		@ args = 0, pretend = 0, frame = 8
+ 207              		@ frame_needed = 0, uses_anonymous_args = 0
+ 208              		.loc 1 42 1 is_stmt 0 view .LVU30
+ 209 0000 00B5     		push	{lr}
+ 210              	.LCFI8:
+ 211              		.cfi_def_cfa_offset 4
+ 212              		.cfi_offset 14, -4
+ 213 0002 87B0     		sub	sp, sp, #28
+ 214              	.LCFI9:
+ 215              		.cfi_def_cfa_offset 32
+  43:sensor_drive/power_measure.c ****     uint8_t buffer[2] = {0x97, 0x1C};
+ 216              		.loc 1 43 5 is_stmt 1 view .LVU31
+ 217              		.loc 1 43 13 is_stmt 0 view .LVU32
+ 218 0004 41F69743 		movw	r3, #7319
+ 219 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+  44:sensor_drive/power_measure.c ****     if (data > 0x1F)
+ 220              		.loc 1 44 5 is_stmt 1 view .LVU33
+ 221              		.loc 1 44 8 is_stmt 0 view .LVU34
+ 222 000c 1F28     		cmp	r0, #31
+ 223 000e 00D9     		bls	.L15
+  45:sensor_drive/power_measure.c ****     {
+  46:sensor_drive/power_measure.c ****         data = 0x1F;
+ 224              		.loc 1 46 14 view .LVU35
+ 225 0010 1F20     		movs	r0, #31
+ 226              	.LVL15:
+ 227              	.L15:
+  47:sensor_drive/power_measure.c ****     }
+  48:sensor_drive/power_measure.c ****     buffer[1] = (0x1F - data) | 0x20;
+ 228              		.loc 1 48 5 is_stmt 1 view .LVU36
+ 229              		.loc 1 48 23 is_stmt 0 view .LVU37
+ 230 0012 C0F11F00 		rsb	r0, r0, #31
+ 231              	.LVL16:
+ 232              		.loc 1 48 23 view .LVU38
+ 233 0016 40B2     		sxtb	r0, r0
+ 234              		.loc 1 48 31 view .LVU39
+ 235 0018 40F02000 		orr	r0, r0, #32
+ 236              		.loc 1 48 15 view .LVU40
+ 237 001c 8DF81500 		strb	r0, [sp, #21]
+  49:sensor_drive/power_measure.c ****     HAL_I2C_Mem_Write(&hi2c1, MAX_17043_ADDER, MAX17043_CONFIG_MSB, I2C_MEMADD_SIZE_16BIT, buffer, 
+ 238              		.loc 1 49 5 is_stmt 1 view .LVU41
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 6
+
+
+ 239 0020 0423     		movs	r3, #4
+ 240 0022 0293     		str	r3, [sp, #8]
+ 241 0024 0223     		movs	r3, #2
+ 242 0026 0193     		str	r3, [sp, #4]
+ 243 0028 05AB     		add	r3, sp, #20
+ 244 002a 0093     		str	r3, [sp]
+ 245 002c 1023     		movs	r3, #16
+ 246 002e 0C22     		movs	r2, #12
+ 247 0030 6C21     		movs	r1, #108
+ 248 0032 0348     		ldr	r0, .L18
+ 249 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 250              	.LVL17:
+  50:sensor_drive/power_measure.c **** }
+ 251              		.loc 1 50 1 is_stmt 0 view .LVU42
+ 252 0038 07B0     		add	sp, sp, #28
+ 253              	.LCFI10:
+ 254              		.cfi_def_cfa_offset 4
+ 255              		@ sp needed
+ 256 003a 5DF804FB 		ldr	pc, [sp], #4
+ 257              	.L19:
+ 258 003e 00BF     		.align	2
+ 259              	.L18:
+ 260 0040 00000000 		.word	hi2c1
+ 261              		.cfi_endproc
+ 262              	.LFE67:
+ 264              		.section	.text.reset_alert_threshold,"ax",%progbits
+ 265              		.align	1
+ 266              		.global	reset_alert_threshold
+ 267              		.syntax unified
+ 268              		.thumb
+ 269              		.thumb_func
+ 270              		.fpu softvfp
+ 272              	reset_alert_threshold:
+ 273              	.LFB68:
+  51:sensor_drive/power_measure.c **** 
+  52:sensor_drive/power_measure.c **** int reset_alert_threshold(void)
+  53:sensor_drive/power_measure.c **** {
+ 274              		.loc 1 53 1 is_stmt 1 view -0
+ 275              		.cfi_startproc
+ 276              		@ args = 0, pretend = 0, frame = 8
+ 277              		@ frame_needed = 0, uses_anonymous_args = 0
+ 278 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 279              	.LCFI11:
+ 280              		.cfi_def_cfa_offset 20
+ 281              		.cfi_offset 4, -20
+ 282              		.cfi_offset 5, -16
+ 283              		.cfi_offset 6, -12
+ 284              		.cfi_offset 7, -8
+ 285              		.cfi_offset 14, -4
+ 286 0002 87B0     		sub	sp, sp, #28
+ 287              	.LCFI12:
+ 288              		.cfi_def_cfa_offset 48
+  54:sensor_drive/power_measure.c **** uint8_t  buffer[2] = {0x97, 0x1C};
+ 289              		.loc 1 54 1 view .LVU44
+ 290              		.loc 1 54 10 is_stmt 0 view .LVU45
+ 291 0004 41F69743 		movw	r3, #7319
+ 292 0008 ADF81430 		strh	r3, [sp, #20]	@ movhi
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 7
+
+
+  55:sensor_drive/power_measure.c **** 	
+  56:sensor_drive/power_measure.c **** 
+  57:sensor_drive/power_measure.c ****     HAL_I2C_Mem_Read(&hi2c1,MAX_17043_ADDER,MAX17043_CONFIG_MSB,I2C_MEMADD_SIZE_16BIT,buffer,sizeof
+ 293              		.loc 1 57 5 is_stmt 1 view .LVU46
+ 294 000c 0E4C     		ldr	r4, .L22
+ 295 000e 0427     		movs	r7, #4
+ 296 0010 0297     		str	r7, [sp, #8]
+ 297 0012 0226     		movs	r6, #2
+ 298 0014 0196     		str	r6, [sp, #4]
+ 299 0016 05AD     		add	r5, sp, #20
+ 300 0018 0095     		str	r5, [sp]
+ 301 001a 1023     		movs	r3, #16
+ 302 001c 0C22     		movs	r2, #12
+ 303 001e 6C21     		movs	r1, #108
+ 304 0020 2046     		mov	r0, r4
+ 305 0022 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 306              	.LVL18:
+  58:sensor_drive/power_measure.c ****     buffer[1] &= 0xDF;
+ 307              		.loc 1 58 5 view .LVU47
+ 308              		.loc 1 58 15 is_stmt 0 view .LVU48
+ 309 0026 9DF81530 		ldrb	r3, [sp, #21]	@ zero_extendqisi2
+ 310 002a 23F02003 		bic	r3, r3, #32
+ 311 002e 8DF81530 		strb	r3, [sp, #21]
+  59:sensor_drive/power_measure.c ****     HAL_I2C_Mem_Write(&hi2c1, MAX_17043_ADDER, MAX17043_CONFIG_MSB, I2C_MEMADD_SIZE_16BIT, buffer, 
+ 312              		.loc 1 59 5 is_stmt 1 view .LVU49
+ 313 0032 0297     		str	r7, [sp, #8]
+ 314 0034 0196     		str	r6, [sp, #4]
+ 315 0036 0095     		str	r5, [sp]
+ 316 0038 1023     		movs	r3, #16
+ 317 003a 0C22     		movs	r2, #12
+ 318 003c 6C21     		movs	r1, #108
+ 319 003e 2046     		mov	r0, r4
+ 320 0040 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 321              	.LVL19:
+  60:sensor_drive/power_measure.c **** }
+ 322              		.loc 1 60 1 is_stmt 0 view .LVU50
+ 323 0044 07B0     		add	sp, sp, #28
+ 324              	.LCFI13:
+ 325              		.cfi_def_cfa_offset 20
+ 326              		@ sp needed
+ 327 0046 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 328              	.L23:
+ 329              		.align	2
+ 330              	.L22:
+ 331 0048 00000000 		.word	hi2c1
+ 332              		.cfi_endproc
+ 333              	.LFE68:
+ 335              		.text
+ 336              	.Letext0:
+ 337              		.file 2 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/machine/_default_types.h"
+ 338              		.file 3 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 339              		.file 4 "/opt/gcc-arm-none-eabi-9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h"
+ 340              		.file 5 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_types.h"
+ 341              		.file 6 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/reent.h"
+ 342              		.file 7 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/lock.h"
+ 343              		.file 8 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/stdlib.h"
+ 344              		.file 9 "Drivers/CMSIS/Include/core_cm3.h"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 8
+
+
+ 345              		.file 10 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h"
+ 346              		.file 11 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 347              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 348              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 349              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
+ 350              		.file 15 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 351              		.file 16 "Core/Inc/i2c.h"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s 			page 9
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 power_measure.c
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:20     .text.get_batter_percent:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:28     .text.get_batter_percent:0000000000000000 get_batter_percent
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:120    .text.get_batter_percent:0000000000000064 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:126    .text.power_mesure_restart:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:133    .text.power_mesure_restart:0000000000000000 power_mesure_restart
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:189    .text.power_mesure_restart:0000000000000034 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:194    .text.set_alert_threshold:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:201    .text.set_alert_threshold:0000000000000000 set_alert_threshold
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:260    .text.set_alert_threshold:0000000000000040 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:265    .text.reset_alert_threshold:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:272    .text.reset_alert_threshold:0000000000000000 reset_alert_threshold
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccZfmNHy.s:331    .text.reset_alert_threshold:0000000000000048 $d
+
+UNDEFINED SYMBOLS
+__aeabi_i2d
+__aeabi_dmul
+__aeabi_dadd
+__aeabi_d2f
+HAL_I2C_Mem_Read
+hi2c1
+HAL_I2C_Mem_Write

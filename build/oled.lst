@@ -1,0 +1,1713 @@
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"oled.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.oled_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	oled_init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	oled_init:
+  25              	.LFB65:
+  26              		.file 1 "sensor_drive/oled.c"
+   1:sensor_drive/oled.c **** #include <stdint.h>
+   2:sensor_drive/oled.c **** #include <stddef.h>
+   3:sensor_drive/oled.c **** #include <stdlib.h>
+   4:sensor_drive/oled.c **** #include "i2c.h"
+   5:sensor_drive/oled.c **** #include "stm32f1xx_hal.h"
+   6:sensor_drive/oled.c **** #include "oled.h"
+   7:sensor_drive/oled.c **** 
+   8:sensor_drive/oled.c **** int oled_init(void)
+   9:sensor_drive/oled.c **** {
+  27              		.loc 1 9 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 28
+  34              		.cfi_offset 4, -28
+  35              		.cfi_offset 5, -24
+  36              		.cfi_offset 6, -20
+  37              		.cfi_offset 7, -16
+  38              		.cfi_offset 8, -12
+  39              		.cfi_offset 9, -8
+  40              		.cfi_offset 14, -4
+  41 0004 85B0     		sub	sp, sp, #20
+  42              	.LCFI1:
+  43              		.cfi_def_cfa_offset 48
+  10:sensor_drive/oled.c ****     HAL_StatusTypeDef oled_init_status;
+  44              		.loc 1 10 5 view .LVU1
+  11:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xAE, 1, 2
+  45              		.loc 1 11 5 view .LVU2
+  46              		.loc 1 11 24 is_stmt 0 view .LVU3
+  47 0006 934D     		ldr	r5, .L5
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 2
+
+
+  48 0008 0226     		movs	r6, #2
+  49 000a 0296     		str	r6, [sp, #8]
+  50 000c 0124     		movs	r4, #1
+  51 000e 0194     		str	r4, [sp, #4]
+  52 0010 AE23     		movs	r3, #174
+  53 0012 0093     		str	r3, [sp]
+  54 0014 2346     		mov	r3, r4
+  55 0016 0022     		movs	r2, #0
+  56 0018 7821     		movs	r1, #120
+  57 001a 2846     		mov	r0, r5
+  58 001c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  59              	.LVL0:
+  12:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x20, 1, 2
+  60              		.loc 1 12 5 is_stmt 1 view .LVU4
+  61              		.loc 1 12 24 is_stmt 0 view .LVU5
+  62 0020 0296     		str	r6, [sp, #8]
+  63 0022 0194     		str	r4, [sp, #4]
+  64 0024 4FF02008 		mov	r8, #32
+  65 0028 CDF80080 		str	r8, [sp]
+  66 002c 2346     		mov	r3, r4
+  67 002e 0022     		movs	r2, #0
+  68 0030 7821     		movs	r1, #120
+  69 0032 2846     		mov	r0, r5
+  70 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  71              	.LVL1:
+  13:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x10, 1, 2
+  72              		.loc 1 13 5 is_stmt 1 view .LVU6
+  73              		.loc 1 13 24 is_stmt 0 view .LVU7
+  74 0038 0296     		str	r6, [sp, #8]
+  75 003a 0194     		str	r4, [sp, #4]
+  76 003c 4FF01009 		mov	r9, #16
+  77 0040 CDF80090 		str	r9, [sp]
+  78 0044 2346     		mov	r3, r4
+  79 0046 0022     		movs	r2, #0
+  80 0048 7821     		movs	r1, #120
+  81 004a 2846     		mov	r0, r5
+  82 004c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  83              	.LVL2:
+  14:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xB0, 1, 2
+  84              		.loc 1 14 5 is_stmt 1 view .LVU8
+  85              		.loc 1 14 24 is_stmt 0 view .LVU9
+  86 0050 0296     		str	r6, [sp, #8]
+  87 0052 0194     		str	r4, [sp, #4]
+  88 0054 B023     		movs	r3, #176
+  89 0056 0093     		str	r3, [sp]
+  90 0058 2346     		mov	r3, r4
+  91 005a 0022     		movs	r2, #0
+  92 005c 7821     		movs	r1, #120
+  93 005e 2846     		mov	r0, r5
+  94 0060 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  95              	.LVL3:
+  15:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xC8, 1, 2
+  96              		.loc 1 15 5 is_stmt 1 view .LVU10
+  97              		.loc 1 15 24 is_stmt 0 view .LVU11
+  98 0064 0296     		str	r6, [sp, #8]
+  99 0066 0194     		str	r4, [sp, #4]
+ 100 0068 C823     		movs	r3, #200
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 3
+
+
+ 101 006a 0093     		str	r3, [sp]
+ 102 006c 2346     		mov	r3, r4
+ 103 006e 0022     		movs	r2, #0
+ 104 0070 7821     		movs	r1, #120
+ 105 0072 2846     		mov	r0, r5
+ 106 0074 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 107              	.LVL4:
+  16:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x00, 1, 2
+ 108              		.loc 1 16 5 is_stmt 1 view .LVU12
+ 109              		.loc 1 16 24 is_stmt 0 view .LVU13
+ 110 0078 0296     		str	r6, [sp, #8]
+ 111 007a 0194     		str	r4, [sp, #4]
+ 112 007c 0027     		movs	r7, #0
+ 113 007e 0097     		str	r7, [sp]
+ 114 0080 2346     		mov	r3, r4
+ 115 0082 3A46     		mov	r2, r7
+ 116 0084 7821     		movs	r1, #120
+ 117 0086 2846     		mov	r0, r5
+ 118 0088 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 119              	.LVL5:
+  17:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x10, 1, 2
+ 120              		.loc 1 17 5 is_stmt 1 view .LVU14
+ 121              		.loc 1 17 24 is_stmt 0 view .LVU15
+ 122 008c 0296     		str	r6, [sp, #8]
+ 123 008e 0194     		str	r4, [sp, #4]
+ 124 0090 CDF80090 		str	r9, [sp]
+ 125 0094 2346     		mov	r3, r4
+ 126 0096 3A46     		mov	r2, r7
+ 127 0098 7821     		movs	r1, #120
+ 128 009a 2846     		mov	r0, r5
+ 129 009c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 130              	.LVL6:
+  18:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x40, 1, 2
+ 131              		.loc 1 18 5 is_stmt 1 view .LVU16
+ 132              		.loc 1 18 24 is_stmt 0 view .LVU17
+ 133 00a0 0296     		str	r6, [sp, #8]
+ 134 00a2 0194     		str	r4, [sp, #4]
+ 135 00a4 4023     		movs	r3, #64
+ 136 00a6 0093     		str	r3, [sp]
+ 137 00a8 2346     		mov	r3, r4
+ 138 00aa 3A46     		mov	r2, r7
+ 139 00ac 7821     		movs	r1, #120
+ 140 00ae 2846     		mov	r0, r5
+ 141 00b0 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 142              	.LVL7:
+  19:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x81, 1, 2
+ 143              		.loc 1 19 5 is_stmt 1 view .LVU18
+ 144              		.loc 1 19 24 is_stmt 0 view .LVU19
+ 145 00b4 0296     		str	r6, [sp, #8]
+ 146 00b6 0194     		str	r4, [sp, #4]
+ 147 00b8 8123     		movs	r3, #129
+ 148 00ba 0093     		str	r3, [sp]
+ 149 00bc 2346     		mov	r3, r4
+ 150 00be 3A46     		mov	r2, r7
+ 151 00c0 7821     		movs	r1, #120
+ 152 00c2 2846     		mov	r0, r5
+ 153 00c4 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 4
+
+
+ 154              	.LVL8:
+  20:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xFF, 1, 2
+ 155              		.loc 1 20 5 is_stmt 1 view .LVU20
+ 156              		.loc 1 20 24 is_stmt 0 view .LVU21
+ 157 00c8 0296     		str	r6, [sp, #8]
+ 158 00ca 0194     		str	r4, [sp, #4]
+ 159 00cc FF23     		movs	r3, #255
+ 160 00ce 0093     		str	r3, [sp]
+ 161 00d0 2346     		mov	r3, r4
+ 162 00d2 3A46     		mov	r2, r7
+ 163 00d4 7821     		movs	r1, #120
+ 164 00d6 2846     		mov	r0, r5
+ 165 00d8 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 166              	.LVL9:
+  21:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xA1, 1, 2
+ 167              		.loc 1 21 5 is_stmt 1 view .LVU22
+ 168              		.loc 1 21 24 is_stmt 0 view .LVU23
+ 169 00dc 0296     		str	r6, [sp, #8]
+ 170 00de 0194     		str	r4, [sp, #4]
+ 171 00e0 A123     		movs	r3, #161
+ 172 00e2 0093     		str	r3, [sp]
+ 173 00e4 2346     		mov	r3, r4
+ 174 00e6 3A46     		mov	r2, r7
+ 175 00e8 7821     		movs	r1, #120
+ 176 00ea 2846     		mov	r0, r5
+ 177 00ec FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 178              	.LVL10:
+  22:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xA6, 1, 2
+ 179              		.loc 1 22 5 is_stmt 1 view .LVU24
+ 180              		.loc 1 22 24 is_stmt 0 view .LVU25
+ 181 00f0 0296     		str	r6, [sp, #8]
+ 182 00f2 0194     		str	r4, [sp, #4]
+ 183 00f4 A623     		movs	r3, #166
+ 184 00f6 0093     		str	r3, [sp]
+ 185 00f8 2346     		mov	r3, r4
+ 186 00fa 3A46     		mov	r2, r7
+ 187 00fc 7821     		movs	r1, #120
+ 188 00fe 2846     		mov	r0, r5
+ 189 0100 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 190              	.LVL11:
+  23:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xA8, 1, 2
+ 191              		.loc 1 23 5 is_stmt 1 view .LVU26
+ 192              		.loc 1 23 24 is_stmt 0 view .LVU27
+ 193 0104 0296     		str	r6, [sp, #8]
+ 194 0106 0194     		str	r4, [sp, #4]
+ 195 0108 A823     		movs	r3, #168
+ 196 010a 0093     		str	r3, [sp]
+ 197 010c 2346     		mov	r3, r4
+ 198 010e 3A46     		mov	r2, r7
+ 199 0110 7821     		movs	r1, #120
+ 200 0112 2846     		mov	r0, r5
+ 201 0114 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 202              	.LVL12:
+  24:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x3F, 1, 2
+ 203              		.loc 1 24 5 is_stmt 1 view .LVU28
+ 204              		.loc 1 24 24 is_stmt 0 view .LVU29
+ 205 0118 0296     		str	r6, [sp, #8]
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 5
+
+
+ 206 011a 0194     		str	r4, [sp, #4]
+ 207 011c 3F23     		movs	r3, #63
+ 208 011e 0093     		str	r3, [sp]
+ 209 0120 2346     		mov	r3, r4
+ 210 0122 3A46     		mov	r2, r7
+ 211 0124 7821     		movs	r1, #120
+ 212 0126 2846     		mov	r0, r5
+ 213 0128 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 214              	.LVL13:
+  25:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xA4, 1, 2
+ 215              		.loc 1 25 5 is_stmt 1 view .LVU30
+ 216              		.loc 1 25 24 is_stmt 0 view .LVU31
+ 217 012c 0296     		str	r6, [sp, #8]
+ 218 012e 0194     		str	r4, [sp, #4]
+ 219 0130 A423     		movs	r3, #164
+ 220 0132 0093     		str	r3, [sp]
+ 221 0134 2346     		mov	r3, r4
+ 222 0136 3A46     		mov	r2, r7
+ 223 0138 7821     		movs	r1, #120
+ 224 013a 2846     		mov	r0, r5
+ 225 013c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 226              	.LVL14:
+  26:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xD3, 1, 2
+ 227              		.loc 1 26 5 is_stmt 1 view .LVU32
+ 228              		.loc 1 26 24 is_stmt 0 view .LVU33
+ 229 0140 0296     		str	r6, [sp, #8]
+ 230 0142 0194     		str	r4, [sp, #4]
+ 231 0144 D323     		movs	r3, #211
+ 232 0146 0093     		str	r3, [sp]
+ 233 0148 2346     		mov	r3, r4
+ 234 014a 3A46     		mov	r2, r7
+ 235 014c 7821     		movs	r1, #120
+ 236 014e 2846     		mov	r0, r5
+ 237 0150 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 238              	.LVL15:
+  27:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x00, 1, 2
+ 239              		.loc 1 27 5 is_stmt 1 view .LVU34
+ 240              		.loc 1 27 24 is_stmt 0 view .LVU35
+ 241 0154 0296     		str	r6, [sp, #8]
+ 242 0156 0194     		str	r4, [sp, #4]
+ 243 0158 0097     		str	r7, [sp]
+ 244 015a 2346     		mov	r3, r4
+ 245 015c 3A46     		mov	r2, r7
+ 246 015e 7821     		movs	r1, #120
+ 247 0160 2846     		mov	r0, r5
+ 248 0162 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 249              	.LVL16:
+  28:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xD5, 1, 2
+ 250              		.loc 1 28 5 is_stmt 1 view .LVU36
+ 251              		.loc 1 28 24 is_stmt 0 view .LVU37
+ 252 0166 0296     		str	r6, [sp, #8]
+ 253 0168 0194     		str	r4, [sp, #4]
+ 254 016a D523     		movs	r3, #213
+ 255 016c 0093     		str	r3, [sp]
+ 256 016e 2346     		mov	r3, r4
+ 257 0170 3A46     		mov	r2, r7
+ 258 0172 7821     		movs	r1, #120
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 6
+
+
+ 259 0174 2846     		mov	r0, r5
+ 260 0176 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 261              	.LVL17:
+  29:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xF0, 1, 2
+ 262              		.loc 1 29 5 is_stmt 1 view .LVU38
+ 263              		.loc 1 29 24 is_stmt 0 view .LVU39
+ 264 017a 0296     		str	r6, [sp, #8]
+ 265 017c 0194     		str	r4, [sp, #4]
+ 266 017e F023     		movs	r3, #240
+ 267 0180 0093     		str	r3, [sp]
+ 268 0182 2346     		mov	r3, r4
+ 269 0184 3A46     		mov	r2, r7
+ 270 0186 7821     		movs	r1, #120
+ 271 0188 2846     		mov	r0, r5
+ 272 018a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 273              	.LVL18:
+  30:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xD9, 1, 2
+ 274              		.loc 1 30 5 is_stmt 1 view .LVU40
+ 275              		.loc 1 30 24 is_stmt 0 view .LVU41
+ 276 018e 0296     		str	r6, [sp, #8]
+ 277 0190 0194     		str	r4, [sp, #4]
+ 278 0192 D923     		movs	r3, #217
+ 279 0194 0093     		str	r3, [sp]
+ 280 0196 2346     		mov	r3, r4
+ 281 0198 3A46     		mov	r2, r7
+ 282 019a 7821     		movs	r1, #120
+ 283 019c 2846     		mov	r0, r5
+ 284 019e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 285              	.LVL19:
+  31:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x22, 1, 2
+ 286              		.loc 1 31 5 is_stmt 1 view .LVU42
+ 287              		.loc 1 31 24 is_stmt 0 view .LVU43
+ 288 01a2 0296     		str	r6, [sp, #8]
+ 289 01a4 0194     		str	r4, [sp, #4]
+ 290 01a6 2223     		movs	r3, #34
+ 291 01a8 0093     		str	r3, [sp]
+ 292 01aa 2346     		mov	r3, r4
+ 293 01ac 3A46     		mov	r2, r7
+ 294 01ae 7821     		movs	r1, #120
+ 295 01b0 2846     		mov	r0, r5
+ 296 01b2 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 297              	.LVL20:
+  32:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xDA, 1, 2
+ 298              		.loc 1 32 5 is_stmt 1 view .LVU44
+ 299              		.loc 1 32 24 is_stmt 0 view .LVU45
+ 300 01b6 0296     		str	r6, [sp, #8]
+ 301 01b8 0194     		str	r4, [sp, #4]
+ 302 01ba DA23     		movs	r3, #218
+ 303 01bc 0093     		str	r3, [sp]
+ 304 01be 2346     		mov	r3, r4
+ 305 01c0 3A46     		mov	r2, r7
+ 306 01c2 7821     		movs	r1, #120
+ 307 01c4 2846     		mov	r0, r5
+ 308 01c6 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 309              	.LVL21:
+  33:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x12, 1, 2
+ 310              		.loc 1 33 5 is_stmt 1 view .LVU46
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 7
+
+
+ 311              		.loc 1 33 24 is_stmt 0 view .LVU47
+ 312 01ca 0296     		str	r6, [sp, #8]
+ 313 01cc 0194     		str	r4, [sp, #4]
+ 314 01ce 1223     		movs	r3, #18
+ 315 01d0 0093     		str	r3, [sp]
+ 316 01d2 2346     		mov	r3, r4
+ 317 01d4 3A46     		mov	r2, r7
+ 318 01d6 7821     		movs	r1, #120
+ 319 01d8 2846     		mov	r0, r5
+ 320 01da FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 321              	.LVL22:
+  34:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xDB, 1, 2
+ 322              		.loc 1 34 5 is_stmt 1 view .LVU48
+ 323              		.loc 1 34 24 is_stmt 0 view .LVU49
+ 324 01de 0296     		str	r6, [sp, #8]
+ 325 01e0 0194     		str	r4, [sp, #4]
+ 326 01e2 DB23     		movs	r3, #219
+ 327 01e4 0093     		str	r3, [sp]
+ 328 01e6 2346     		mov	r3, r4
+ 329 01e8 3A46     		mov	r2, r7
+ 330 01ea 7821     		movs	r1, #120
+ 331 01ec 2846     		mov	r0, r5
+ 332 01ee FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 333              	.LVL23:
+  35:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x20, 1, 2
+ 334              		.loc 1 35 5 is_stmt 1 view .LVU50
+ 335              		.loc 1 35 24 is_stmt 0 view .LVU51
+ 336 01f2 0296     		str	r6, [sp, #8]
+ 337 01f4 0194     		str	r4, [sp, #4]
+ 338 01f6 CDF80080 		str	r8, [sp]
+ 339 01fa 2346     		mov	r3, r4
+ 340 01fc 3A46     		mov	r2, r7
+ 341 01fe 7821     		movs	r1, #120
+ 342 0200 2846     		mov	r0, r5
+ 343 0202 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 344              	.LVL24:
+  36:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x8D, 1, 2
+ 345              		.loc 1 36 5 is_stmt 1 view .LVU52
+ 346              		.loc 1 36 24 is_stmt 0 view .LVU53
+ 347 0206 0296     		str	r6, [sp, #8]
+ 348 0208 0194     		str	r4, [sp, #4]
+ 349 020a 8D23     		movs	r3, #141
+ 350 020c 0093     		str	r3, [sp]
+ 351 020e 2346     		mov	r3, r4
+ 352 0210 3A46     		mov	r2, r7
+ 353 0212 7821     		movs	r1, #120
+ 354 0214 2846     		mov	r0, r5
+ 355 0216 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 356              	.LVL25:
+  37:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0x14, 1, 2
+ 357              		.loc 1 37 5 is_stmt 1 view .LVU54
+ 358              		.loc 1 37 24 is_stmt 0 view .LVU55
+ 359 021a 0296     		str	r6, [sp, #8]
+ 360 021c 0194     		str	r4, [sp, #4]
+ 361 021e 1423     		movs	r3, #20
+ 362 0220 0093     		str	r3, [sp]
+ 363 0222 2346     		mov	r3, r4
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 8
+
+
+ 364 0224 3A46     		mov	r2, r7
+ 365 0226 7821     		movs	r1, #120
+ 366 0228 2846     		mov	r0, r5
+ 367 022a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 368              	.LVL26:
+  38:sensor_drive/oled.c ****     oled_init_status = HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, 0xAF, 1, 2
+ 369              		.loc 1 38 5 is_stmt 1 view .LVU56
+ 370              		.loc 1 38 24 is_stmt 0 view .LVU57
+ 371 022e 0296     		str	r6, [sp, #8]
+ 372 0230 0194     		str	r4, [sp, #4]
+ 373 0232 AF23     		movs	r3, #175
+ 374 0234 0093     		str	r3, [sp]
+ 375 0236 2346     		mov	r3, r4
+ 376 0238 3A46     		mov	r2, r7
+ 377 023a 7821     		movs	r1, #120
+ 378 023c 2846     		mov	r0, r5
+ 379 023e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 380              	.LVL27:
+  39:sensor_drive/oled.c ****     if (oled_init_status == HAL_OK)
+ 381              		.loc 1 39 5 is_stmt 1 view .LVU58
+ 382              		.loc 1 39 8 is_stmt 0 view .LVU59
+ 383 0242 18B9     		cbnz	r0, .L3
+  40:sensor_drive/oled.c ****     {
+  41:sensor_drive/oled.c ****         return 0;
+ 384              		.loc 1 41 16 view .LVU60
+ 385 0244 3846     		mov	r0, r7
+ 386              	.LVL28:
+ 387              	.L1:
+  42:sensor_drive/oled.c ****     }
+  43:sensor_drive/oled.c ****     else
+  44:sensor_drive/oled.c ****     {
+  45:sensor_drive/oled.c ****         return -1;
+  46:sensor_drive/oled.c ****     }
+  47:sensor_drive/oled.c **** }
+ 388              		.loc 1 47 1 view .LVU61
+ 389 0246 05B0     		add	sp, sp, #20
+ 390              	.LCFI2:
+ 391              		.cfi_remember_state
+ 392              		.cfi_def_cfa_offset 28
+ 393              		@ sp needed
+ 394 0248 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 395              	.LVL29:
+ 396              	.L3:
+ 397              	.LCFI3:
+ 398              		.cfi_restore_state
+  45:sensor_drive/oled.c ****     }
+ 399              		.loc 1 45 16 view .LVU62
+ 400 024c 4FF0FF30 		mov	r0, #-1
+ 401              	.LVL30:
+  45:sensor_drive/oled.c ****     }
+ 402              		.loc 1 45 16 view .LVU63
+ 403 0250 F9E7     		b	.L1
+ 404              	.L6:
+ 405 0252 00BF     		.align	2
+ 406              	.L5:
+ 407 0254 00000000 		.word	hi2c1
+ 408              		.cfi_endproc
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 9
+
+
+ 409              	.LFE65:
+ 411              		.section	.text.oled_set_pos,"ax",%progbits
+ 412              		.align	1
+ 413              		.global	oled_set_pos
+ 414              		.syntax unified
+ 415              		.thumb
+ 416              		.thumb_func
+ 417              		.fpu softvfp
+ 419              	oled_set_pos:
+ 420              	.LVL31:
+ 421              	.LFB66:
+  48:sensor_drive/oled.c **** 
+  49:sensor_drive/oled.c **** int oled_set_pos(uint8_t x, uint8_t y)
+  50:sensor_drive/oled.c **** {
+ 422              		.loc 1 50 1 is_stmt 1 view -0
+ 423              		.cfi_startproc
+ 424              		@ args = 0, pretend = 0, frame = 0
+ 425              		@ frame_needed = 0, uses_anonymous_args = 0
+ 426              		.loc 1 50 1 is_stmt 0 view .LVU65
+ 427 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 428              	.LCFI4:
+ 429              		.cfi_def_cfa_offset 20
+ 430              		.cfi_offset 4, -20
+ 431              		.cfi_offset 5, -16
+ 432              		.cfi_offset 6, -12
+ 433              		.cfi_offset 7, -8
+ 434              		.cfi_offset 14, -4
+ 435 0002 85B0     		sub	sp, sp, #20
+ 436              	.LCFI5:
+ 437              		.cfi_def_cfa_offset 40
+ 438 0004 0446     		mov	r4, r0
+  51:sensor_drive/oled.c ****     HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, (0xB0 + y), 1, 2);
+ 439              		.loc 1 51 5 is_stmt 1 view .LVU66
+ 440              		.loc 1 51 77 is_stmt 0 view .LVU67
+ 441 0006 B031     		adds	r1, r1, #176
+ 442              	.LVL32:
+ 443              		.loc 1 51 5 view .LVU68
+ 444 0008 124E     		ldr	r6, .L9
+ 445 000a 0227     		movs	r7, #2
+ 446 000c 0297     		str	r7, [sp, #8]
+ 447 000e 0125     		movs	r5, #1
+ 448 0010 0195     		str	r5, [sp, #4]
+ 449 0012 0091     		str	r1, [sp]
+ 450 0014 2B46     		mov	r3, r5
+ 451 0016 0022     		movs	r2, #0
+ 452 0018 7821     		movs	r1, #120
+ 453 001a 3046     		mov	r0, r6
+ 454              	.LVL33:
+ 455              		.loc 1 51 5 view .LVU69
+ 456 001c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 457              	.LVL34:
+  52:sensor_drive/oled.c ****     HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, ((x & 0xF0) >> 4 | 0x10), 1, 
+ 458              		.loc 1 52 5 is_stmt 1 view .LVU70
+ 459              		.loc 1 52 83 is_stmt 0 view .LVU71
+ 460 0020 2309     		lsrs	r3, r4, #4
+ 461              		.loc 1 52 88 view .LVU72
+ 462 0022 43F01003 		orr	r3, r3, #16
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 10
+
+
+ 463              		.loc 1 52 5 view .LVU73
+ 464 0026 0297     		str	r7, [sp, #8]
+ 465 0028 0195     		str	r5, [sp, #4]
+ 466 002a 0093     		str	r3, [sp]
+ 467 002c 2B46     		mov	r3, r5
+ 468 002e 0022     		movs	r2, #0
+ 469 0030 7821     		movs	r1, #120
+ 470 0032 3046     		mov	r0, r6
+ 471 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 472              	.LVL35:
+  53:sensor_drive/oled.c ****     HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x00, I2C_MEMADD_SIZE_8BIT, ((x & 0x0F) | 0x01), 1, 2);
+ 473              		.loc 1 53 5 is_stmt 1 view .LVU74
+ 474              		.loc 1 53 83 is_stmt 0 view .LVU75
+ 475 0038 04F00E04 		and	r4, r4, #14
+ 476 003c 2C43     		orrs	r4, r4, r5
+ 477              		.loc 1 53 5 view .LVU76
+ 478 003e 0297     		str	r7, [sp, #8]
+ 479 0040 0195     		str	r5, [sp, #4]
+ 480 0042 0094     		str	r4, [sp]
+ 481 0044 2B46     		mov	r3, r5
+ 482 0046 0022     		movs	r2, #0
+ 483 0048 7821     		movs	r1, #120
+ 484 004a 3046     		mov	r0, r6
+ 485 004c FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 486              	.LVL36:
+  54:sensor_drive/oled.c **** }
+ 487              		.loc 1 54 1 view .LVU77
+ 488 0050 05B0     		add	sp, sp, #20
+ 489              	.LCFI6:
+ 490              		.cfi_def_cfa_offset 20
+ 491              		@ sp needed
+ 492 0052 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 493              	.L10:
+ 494              		.align	2
+ 495              	.L9:
+ 496 0054 00000000 		.word	hi2c1
+ 497              		.cfi_endproc
+ 498              	.LFE66:
+ 500              		.section	.text.oled_show_str,"ax",%progbits
+ 501              		.align	1
+ 502              		.global	oled_show_str
+ 503              		.syntax unified
+ 504              		.thumb
+ 505              		.thumb_func
+ 506              		.fpu softvfp
+ 508              	oled_show_str:
+ 509              	.LVL37:
+ 510              	.LFB67:
+  55:sensor_drive/oled.c **** 
+  56:sensor_drive/oled.c **** int oled_show_str(uint8_t x, uint8_t y, uint8_t ch[], uint8_t textsize)
+  57:sensor_drive/oled.c **** {
+ 511              		.loc 1 57 1 is_stmt 1 view -0
+ 512              		.cfi_startproc
+ 513              		@ args = 0, pretend = 0, frame = 0
+ 514              		@ frame_needed = 0, uses_anonymous_args = 0
+ 515              		.loc 1 57 1 is_stmt 0 view .LVU79
+ 516 0000 2DE9F043 		push	{r4, r5, r6, r7, r8, r9, lr}
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 11
+
+
+ 517              	.LCFI7:
+ 518              		.cfi_def_cfa_offset 28
+ 519              		.cfi_offset 4, -28
+ 520              		.cfi_offset 5, -24
+ 521              		.cfi_offset 6, -20
+ 522              		.cfi_offset 7, -16
+ 523              		.cfi_offset 8, -12
+ 524              		.cfi_offset 9, -8
+ 525              		.cfi_offset 14, -4
+ 526 0004 85B0     		sub	sp, sp, #20
+ 527              	.LCFI8:
+ 528              		.cfi_def_cfa_offset 48
+ 529 0006 0646     		mov	r6, r0
+ 530 0008 0F46     		mov	r7, r1
+ 531 000a 9046     		mov	r8, r2
+  58:sensor_drive/oled.c ****     uint8_t c = 0;
+ 532              		.loc 1 58 5 is_stmt 1 view .LVU80
+ 533              	.LVL38:
+  59:sensor_drive/oled.c ****     uint8_t i = 0;
+ 534              		.loc 1 59 5 view .LVU81
+  60:sensor_drive/oled.c ****     uint8_t j = 0;
+ 535              		.loc 1 60 5 view .LVU82
+  61:sensor_drive/oled.c ****     switch (textsize)
+ 536              		.loc 1 61 5 view .LVU83
+ 537 000c 012B     		cmp	r3, #1
+ 538 000e 2FD0     		beq	.L25
+ 539 0010 022B     		cmp	r3, #2
+ 540 0012 73D0     		beq	.L26
+ 541              	.LVL39:
+ 542              	.L14:
+  62:sensor_drive/oled.c ****     {
+  63:sensor_drive/oled.c ****     case 1:
+  64:sensor_drive/oled.c ****     {
+  65:sensor_drive/oled.c ****         while (ch[j] != '\0')
+  66:sensor_drive/oled.c ****         {
+  67:sensor_drive/oled.c ****             c = ch[j] - 32;
+  68:sensor_drive/oled.c ****             if (x > 126)
+  69:sensor_drive/oled.c ****             {
+  70:sensor_drive/oled.c ****                 x = 0;
+  71:sensor_drive/oled.c ****                 y++;
+  72:sensor_drive/oled.c ****             }
+  73:sensor_drive/oled.c **** 
+  74:sensor_drive/oled.c ****             oled_set_pos(x, y);
+  75:sensor_drive/oled.c **** 
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+  77:sensor_drive/oled.c ****             {
+  78:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F6x8[c][i]), 1, 
+  79:sensor_drive/oled.c ****             }
+  80:sensor_drive/oled.c ****             x += 6;
+  81:sensor_drive/oled.c ****             j++;
+  82:sensor_drive/oled.c ****         }
+  83:sensor_drive/oled.c ****     }
+  84:sensor_drive/oled.c ****     break;
+  85:sensor_drive/oled.c **** 
+  86:sensor_drive/oled.c ****     case 2:
+  87:sensor_drive/oled.c ****     {
+  88:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 12
+
+
+  89:sensor_drive/oled.c ****         {
+  90:sensor_drive/oled.c ****             c = ch[j] - 32;
+  91:sensor_drive/oled.c **** 
+  92:sensor_drive/oled.c ****             if (x > 120)
+  93:sensor_drive/oled.c ****             {
+  94:sensor_drive/oled.c ****                 x = 0;
+  95:sensor_drive/oled.c ****                 y++;
+  96:sensor_drive/oled.c ****             }
+  97:sensor_drive/oled.c **** 
+  98:sensor_drive/oled.c ****             oled_set_pos(x, y);
+  99:sensor_drive/oled.c **** 
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 101:sensor_drive/oled.c ****             {
+ 102:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 103:sensor_drive/oled.c ****             }
+ 104:sensor_drive/oled.c **** 
+ 105:sensor_drive/oled.c ****             oled_set_pos(x, y + 1);
+ 106:sensor_drive/oled.c **** 
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 108:sensor_drive/oled.c ****             {
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 110:sensor_drive/oled.c ****             }
+ 111:sensor_drive/oled.c ****             x += 8;
+ 112:sensor_drive/oled.c ****             j++;
+ 113:sensor_drive/oled.c ****         }
+ 114:sensor_drive/oled.c ****     }
+ 115:sensor_drive/oled.c ****     break;
+ 116:sensor_drive/oled.c ****     }
+ 117:sensor_drive/oled.c **** }...
+ 543              		.loc 1 117 1 is_stmt 0 view .LVU84
+ 544 0014 05B0     		add	sp, sp, #20
+ 545              	.LCFI9:
+ 546              		.cfi_remember_state
+ 547              		.cfi_def_cfa_offset 28
+ 548              		@ sp needed
+ 549 0016 BDE8F083 		pop	{r4, r5, r6, r7, r8, r9, pc}
+ 550              	.LVL40:
+ 551              	.L28:
+ 552              	.LCFI10:
+ 553              		.cfi_restore_state
+  80:sensor_drive/oled.c ****             x += 6;
+ 554              		.loc 1 80 13 is_stmt 1 view .LVU85
+  80:sensor_drive/oled.c ****             x += 6;
+ 555              		.loc 1 80 15 is_stmt 0 view .LVU86
+ 556 001a 0636     		adds	r6, r6, #6
+ 557              	.LVL41:
+  80:sensor_drive/oled.c ****             x += 6;
+ 558              		.loc 1 80 15 view .LVU87
+ 559 001c F6B2     		uxtb	r6, r6
+ 560              	.LVL42:
+  81:sensor_drive/oled.c ****             j++;
+ 561              		.loc 1 81 13 is_stmt 1 view .LVU88
+  81:sensor_drive/oled.c ****             j++;
+ 562              		.loc 1 81 14 is_stmt 0 view .LVU89
+ 563 001e 09F10109 		add	r9, r9, #1
+ 564              	.LVL43:
+  81:sensor_drive/oled.c ****             j++;
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 13
+
+
+ 565              		.loc 1 81 14 view .LVU90
+ 566 0022 5FFA89F9 		uxtb	r9, r9
+ 567              	.LVL44:
+ 568              	.L12:
+  65:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 569              		.loc 1 65 15 is_stmt 1 view .LVU91
+  65:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 570              		.loc 1 65 18 is_stmt 0 view .LVU92
+ 571 0026 18F80950 		ldrb	r5, [r8, r9]	@ zero_extendqisi2
+  65:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 572              		.loc 1 65 15 view .LVU93
+ 573 002a 002D     		cmp	r5, #0
+ 574 002c F2D0     		beq	.L14
+  67:sensor_drive/oled.c ****             c = ch[j] - 32;
+ 575              		.loc 1 67 13 is_stmt 1 view .LVU94
+  67:sensor_drive/oled.c ****             c = ch[j] - 32;
+ 576              		.loc 1 67 15 is_stmt 0 view .LVU95
+ 577 002e 203D     		subs	r5, r5, #32
+ 578 0030 EDB2     		uxtb	r5, r5
+ 579              	.LVL45:
+  68:sensor_drive/oled.c ****             if (x > 126)
+ 580              		.loc 1 68 13 is_stmt 1 view .LVU96
+  68:sensor_drive/oled.c ****             if (x > 126)
+ 581              		.loc 1 68 16 is_stmt 0 view .LVU97
+ 582 0032 7E2E     		cmp	r6, #126
+ 583 0034 02D9     		bls	.L15
+  70:sensor_drive/oled.c ****                 x = 0;
+ 584              		.loc 1 70 17 is_stmt 1 view .LVU98
+ 585              	.LVL46:
+  71:sensor_drive/oled.c ****                 y++;
+ 586              		.loc 1 71 17 view .LVU99
+  71:sensor_drive/oled.c ****                 y++;
+ 587              		.loc 1 71 18 is_stmt 0 view .LVU100
+ 588 0036 0137     		adds	r7, r7, #1
+ 589              	.LVL47:
+  71:sensor_drive/oled.c ****                 y++;
+ 590              		.loc 1 71 18 view .LVU101
+ 591 0038 FFB2     		uxtb	r7, r7
+ 592              	.LVL48:
+  70:sensor_drive/oled.c ****                 x = 0;
+ 593              		.loc 1 70 19 view .LVU102
+ 594 003a 0026     		movs	r6, #0
+ 595              	.LVL49:
+ 596              	.L15:
+  74:sensor_drive/oled.c ****             oled_set_pos(x, y);
+ 597              		.loc 1 74 13 is_stmt 1 view .LVU103
+ 598 003c 3946     		mov	r1, r7
+ 599 003e 3046     		mov	r0, r6
+ 600 0040 FFF7FEFF 		bl	oled_set_pos
+ 601              	.LVL50:
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 602              		.loc 1 76 13 view .LVU104
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 603              		.loc 1 76 20 is_stmt 0 view .LVU105
+ 604 0044 0024     		movs	r4, #0
+ 605              	.LVL51:
+ 606              	.L16:
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 14
+
+
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 607              		.loc 1 76 25 is_stmt 1 discriminator 1 view .LVU106
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 608              		.loc 1 76 13 is_stmt 0 discriminator 1 view .LVU107
+ 609 0046 052C     		cmp	r4, #5
+ 610 0048 E7D8     		bhi	.L28
+  78:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F6x8[c][i]), 1, 
+ 611              		.loc 1 78 17 is_stmt 1 discriminator 3 view .LVU108
+  78:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F6x8[c][i]), 1, 
+ 612              		.loc 1 78 91 is_stmt 0 discriminator 3 view .LVU109
+ 613 004a 05EB4503 		add	r3, r5, r5, lsl #1
+ 614 004e 2D4A     		ldr	r2, .L29
+ 615 0050 02EB4303 		add	r3, r2, r3, lsl #1
+ 616 0054 1A5D     		ldrb	r2, [r3, r4]	@ zero_extendqisi2
+  78:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F6x8[c][i]), 1, 
+ 617              		.loc 1 78 17 discriminator 3 view .LVU110
+ 618 0056 0223     		movs	r3, #2
+ 619 0058 0293     		str	r3, [sp, #8]
+ 620 005a 0123     		movs	r3, #1
+ 621 005c 0193     		str	r3, [sp, #4]
+ 622 005e 0092     		str	r2, [sp]
+ 623 0060 4022     		movs	r2, #64
+ 624 0062 7821     		movs	r1, #120
+ 625 0064 2848     		ldr	r0, .L29+4
+ 626 0066 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 627              	.LVL52:
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 628              		.loc 1 76 32 is_stmt 1 discriminator 3 view .LVU111
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 629              		.loc 1 76 33 is_stmt 0 discriminator 3 view .LVU112
+ 630 006a 0134     		adds	r4, r4, #1
+ 631              	.LVL53:
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 632              		.loc 1 76 33 discriminator 3 view .LVU113
+ 633 006c E4B2     		uxtb	r4, r4
+ 634              	.LVL54:
+  76:sensor_drive/oled.c ****             for (i = 0; i < 6; i++)
+ 635              		.loc 1 76 33 discriminator 3 view .LVU114
+ 636 006e EAE7     		b	.L16
+ 637              	.LVL55:
+ 638              	.L25:
+  61:sensor_drive/oled.c ****     switch (textsize)
+ 639              		.loc 1 61 5 view .LVU115
+ 640 0070 4FF00009 		mov	r9, #0
+ 641 0074 D7E7     		b	.L12
+ 642              	.LVL56:
+ 643              	.L21:
+ 102:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 644              		.loc 1 102 17 is_stmt 1 discriminator 3 view .LVU116
+ 102:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 645              		.loc 1 102 97 is_stmt 0 discriminator 3 view .LVU117
+ 646 0076 04EB0513 		add	r3, r4, r5, lsl #4
+ 102:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 647              		.loc 1 102 89 discriminator 3 view .LVU118
+ 648 007a 244A     		ldr	r2, .L29+8
+ 649 007c D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ 102:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 15
+
+
+ 650              		.loc 1 102 17 discriminator 3 view .LVU119
+ 651 007e 0223     		movs	r3, #2
+ 652 0080 0293     		str	r3, [sp, #8]
+ 653 0082 0123     		movs	r3, #1
+ 654 0084 0193     		str	r3, [sp, #4]
+ 655 0086 0092     		str	r2, [sp]
+ 656 0088 4022     		movs	r2, #64
+ 657 008a 7821     		movs	r1, #120
+ 658 008c 1E48     		ldr	r0, .L29+4
+ 659 008e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 660              	.LVL57:
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 661              		.loc 1 100 32 is_stmt 1 discriminator 3 view .LVU120
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 662              		.loc 1 100 33 is_stmt 0 discriminator 3 view .LVU121
+ 663 0092 0134     		adds	r4, r4, #1
+ 664              	.LVL58:
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 665              		.loc 1 100 33 discriminator 3 view .LVU122
+ 666 0094 E4B2     		uxtb	r4, r4
+ 667              	.LVL59:
+ 668              	.L20:
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 669              		.loc 1 100 25 is_stmt 1 discriminator 1 view .LVU123
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 670              		.loc 1 100 13 is_stmt 0 discriminator 1 view .LVU124
+ 671 0096 072C     		cmp	r4, #7
+ 672 0098 EDD9     		bls	.L21
+ 105:sensor_drive/oled.c ****             oled_set_pos(x, y + 1);
+ 673              		.loc 1 105 13 is_stmt 1 view .LVU125
+ 674 009a 791C     		adds	r1, r7, #1
+ 675 009c C9B2     		uxtb	r1, r1
+ 676 009e 3046     		mov	r0, r6
+ 677 00a0 FFF7FEFF 		bl	oled_set_pos
+ 678              	.LVL60:
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 679              		.loc 1 107 13 view .LVU126
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 680              		.loc 1 107 20 is_stmt 0 view .LVU127
+ 681 00a4 0024     		movs	r4, #0
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 682              		.loc 1 107 13 view .LVU128
+ 683 00a6 10E0     		b	.L22
+ 684              	.LVL61:
+ 685              	.L23:
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 686              		.loc 1 109 17 is_stmt 1 discriminator 3 view .LVU129
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 687              		.loc 1 109 97 is_stmt 0 discriminator 3 view .LVU130
+ 688 00a8 04EB0513 		add	r3, r4, r5, lsl #4
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 689              		.loc 1 109 101 discriminator 3 view .LVU131
+ 690 00ac 0833     		adds	r3, r3, #8
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 691              		.loc 1 109 89 discriminator 3 view .LVU132
+ 692 00ae 174A     		ldr	r2, .L29+8
+ 693 00b0 D25C     		ldrb	r2, [r2, r3]	@ zero_extendqisi2
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 16
+
+
+ 109:sensor_drive/oled.c ****                 HAL_I2C_Mem_Write(&hi2c1, OLED_ADDER, 0x40, I2C_MEMADD_SIZE_8BIT, (F8X16[c * 16 + i
+ 694              		.loc 1 109 17 discriminator 3 view .LVU133
+ 695 00b2 0223     		movs	r3, #2
+ 696 00b4 0293     		str	r3, [sp, #8]
+ 697 00b6 0123     		movs	r3, #1
+ 698 00b8 0193     		str	r3, [sp, #4]
+ 699 00ba 0092     		str	r2, [sp]
+ 700 00bc 4022     		movs	r2, #64
+ 701 00be 7821     		movs	r1, #120
+ 702 00c0 1148     		ldr	r0, .L29+4
+ 703 00c2 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 704              	.LVL62:
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 705              		.loc 1 107 32 is_stmt 1 discriminator 3 view .LVU134
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 706              		.loc 1 107 33 is_stmt 0 discriminator 3 view .LVU135
+ 707 00c6 0134     		adds	r4, r4, #1
+ 708              	.LVL63:
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 709              		.loc 1 107 33 discriminator 3 view .LVU136
+ 710 00c8 E4B2     		uxtb	r4, r4
+ 711              	.LVL64:
+ 712              	.L22:
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 713              		.loc 1 107 25 is_stmt 1 discriminator 1 view .LVU137
+ 107:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 714              		.loc 1 107 13 is_stmt 0 discriminator 1 view .LVU138
+ 715 00ca 072C     		cmp	r4, #7
+ 716 00cc ECD9     		bls	.L23
+ 111:sensor_drive/oled.c ****             x += 8;
+ 717              		.loc 1 111 13 is_stmt 1 view .LVU139
+ 111:sensor_drive/oled.c ****             x += 8;
+ 718              		.loc 1 111 15 is_stmt 0 view .LVU140
+ 719 00ce 0836     		adds	r6, r6, #8
+ 720              	.LVL65:
+ 111:sensor_drive/oled.c ****             x += 8;
+ 721              		.loc 1 111 15 view .LVU141
+ 722 00d0 F6B2     		uxtb	r6, r6
+ 723              	.LVL66:
+ 112:sensor_drive/oled.c ****             j++;
+ 724              		.loc 1 112 13 is_stmt 1 view .LVU142
+ 112:sensor_drive/oled.c ****             j++;
+ 725              		.loc 1 112 14 is_stmt 0 view .LVU143
+ 726 00d2 09F10109 		add	r9, r9, #1
+ 727              	.LVL67:
+ 112:sensor_drive/oled.c ****             j++;
+ 728              		.loc 1 112 14 view .LVU144
+ 729 00d6 5FFA89F9 		uxtb	r9, r9
+ 730              	.LVL68:
+ 731              	.L13:
+  88:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 732              		.loc 1 88 15 is_stmt 1 view .LVU145
+  88:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 733              		.loc 1 88 18 is_stmt 0 view .LVU146
+ 734 00da 18F80950 		ldrb	r5, [r8, r9]	@ zero_extendqisi2
+  88:sensor_drive/oled.c ****         while (ch[j] != '\0')
+ 735              		.loc 1 88 15 view .LVU147
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 17
+
+
+ 736 00de 002D     		cmp	r5, #0
+ 737 00e0 98D0     		beq	.L14
+  90:sensor_drive/oled.c ****             c = ch[j] - 32;
+ 738              		.loc 1 90 13 is_stmt 1 view .LVU148
+  90:sensor_drive/oled.c ****             c = ch[j] - 32;
+ 739              		.loc 1 90 15 is_stmt 0 view .LVU149
+ 740 00e2 203D     		subs	r5, r5, #32
+ 741 00e4 EDB2     		uxtb	r5, r5
+ 742              	.LVL69:
+  92:sensor_drive/oled.c ****             if (x > 120)
+ 743              		.loc 1 92 13 is_stmt 1 view .LVU150
+  92:sensor_drive/oled.c ****             if (x > 120)
+ 744              		.loc 1 92 16 is_stmt 0 view .LVU151
+ 745 00e6 782E     		cmp	r6, #120
+ 746 00e8 02D9     		bls	.L19
+  94:sensor_drive/oled.c ****                 x = 0;
+ 747              		.loc 1 94 17 is_stmt 1 view .LVU152
+ 748              	.LVL70:
+  95:sensor_drive/oled.c ****                 y++;
+ 749              		.loc 1 95 17 view .LVU153
+  95:sensor_drive/oled.c ****                 y++;
+ 750              		.loc 1 95 18 is_stmt 0 view .LVU154
+ 751 00ea 0137     		adds	r7, r7, #1
+ 752              	.LVL71:
+  95:sensor_drive/oled.c ****                 y++;
+ 753              		.loc 1 95 18 view .LVU155
+ 754 00ec FFB2     		uxtb	r7, r7
+ 755              	.LVL72:
+  94:sensor_drive/oled.c ****                 x = 0;
+ 756              		.loc 1 94 19 view .LVU156
+ 757 00ee 0026     		movs	r6, #0
+ 758              	.LVL73:
+ 759              	.L19:
+  98:sensor_drive/oled.c ****             oled_set_pos(x, y);
+ 760              		.loc 1 98 13 is_stmt 1 view .LVU157
+ 761 00f0 3946     		mov	r1, r7
+ 762 00f2 3046     		mov	r0, r6
+ 763 00f4 FFF7FEFF 		bl	oled_set_pos
+ 764              	.LVL74:
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 765              		.loc 1 100 13 view .LVU158
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 766              		.loc 1 100 20 is_stmt 0 view .LVU159
+ 767 00f8 0024     		movs	r4, #0
+ 100:sensor_drive/oled.c ****             for (i = 0; i < 8; i++)
+ 768              		.loc 1 100 13 view .LVU160
+ 769 00fa CCE7     		b	.L20
+ 770              	.LVL75:
+ 771              	.L26:
+  61:sensor_drive/oled.c ****     switch (textsize)
+ 772              		.loc 1 61 5 view .LVU161
+ 773 00fc 4FF00009 		mov	r9, #0
+ 774 0100 EBE7     		b	.L13
+ 775              	.L30:
+ 776 0102 00BF     		.align	2
+ 777              	.L29:
+ 778 0104 00000000 		.word	.LANCHOR0
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 18
+
+
+ 779 0108 00000000 		.word	hi2c1
+ 780 010c 00000000 		.word	.LANCHOR1
+ 781              		.cfi_endproc
+ 782              	.LFE67:
+ 784              		.global	F8X16
+ 785              		.global	F6x8
+ 786              		.section	.rodata.F6x8,"a"
+ 787              		.align	2
+ 788              		.set	.LANCHOR0,. + 0
+ 791              	F6x8:
+ 792 0000 00000000 		.ascii	"\000\000\000\000\000\000"
+ 792      0000
+ 793 0006 0000002F 		.ascii	"\000\000\000/\000\000"
+ 793      0000
+ 794 000c 00000700 		.ascii	"\000\000\007\000\007\000"
+ 794      0700
+ 795 0012 00147F14 		.ascii	"\000\024\177\024\177\024"
+ 795      7F14
+ 796 0018 00242A7F 		.ascii	"\000$*\177*\022"
+ 796      2A12
+ 797 001e 00626408 		.ascii	"\000bd\010\023#"
+ 797      1323
+ 798 0024 00364955 		.ascii	"\0006IU\"P"
+ 798      2250
+ 799 002a 00000503 		.ascii	"\000\000\005\003\000\000"
+ 799      0000
+ 800 0030 00001C22 		.ascii	"\000\000\034\"A\000"
+ 800      4100
+ 801 0036 00004122 		.ascii	"\000\000A\"\034\000"
+ 801      1C00
+ 802 003c 0014083E 		.ascii	"\000\024\010>\010\024"
+ 802      0814
+ 803 0042 0008083E 		.ascii	"\000\010\010>\010\010"
+ 803      0808
+ 804 0048 000000A0 		.ascii	"\000\000\000\240`\000"
+ 804      6000
+ 805 004e 00080808 		.ascii	"\000\010\010\010\010\010"
+ 805      0808
+ 806 0054 00006060 		.ascii	"\000\000``\000\000"
+ 806      0000
+ 807 005a 00201008 		.ascii	"\000 \020\010\004\002"
+ 807      0402
+ 808 0060 003E5149 		.ascii	"\000>QIE>"
+ 808      453E
+ 809 0066 0000427F 		.ascii	"\000\000B\177@\000"
+ 809      4000
+ 810 006c 00426151 		.ascii	"\000BaQIF"
+ 810      4946
+ 811 0072 00214145 		.ascii	"\000!AEK1"
+ 811      4B31
+ 812 0078 00181412 		.ascii	"\000\030\024\022\177\020"
+ 812      7F10
+ 813 007e 00274545 		.ascii	"\000'EEE9"
+ 813      4539
+ 814 0084 003C4A49 		.ascii	"\000<JII0"
+ 814      4930
+ 815 008a 00017109 		.ascii	"\000\001q\011\005\003"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 19
+
+
+ 815      0503
+ 816 0090 00364949 		.ascii	"\0006III6"
+ 816      4936
+ 817 0096 00064949 		.ascii	"\000\006II)\036"
+ 817      291E
+ 818 009c 00003636 		.ascii	"\000\00066\000\000"
+ 818      0000
+ 819 00a2 00005636 		.ascii	"\000\000V6\000\000"
+ 819      0000
+ 820 00a8 00081422 		.ascii	"\000\010\024\"A\000"
+ 820      4100
+ 821 00ae 00141414 		.ascii	"\000\024\024\024\024\024"
+ 821      1414
+ 822 00b4 00004122 		.ascii	"\000\000A\"\024\010"
+ 822      1408
+ 823 00ba 00020151 		.ascii	"\000\002\001Q\011\006"
+ 823      0906
+ 824 00c0 00324959 		.ascii	"\0002IYQ>"
+ 824      513E
+ 825 00c6 007C1211 		.ascii	"\000|\022\021\022|"
+ 825      127C
+ 826 00cc 007F4949 		.ascii	"\000\177III6"
+ 826      4936
+ 827 00d2 003E4141 		.ascii	"\000>AAA\""
+ 827      4122
+ 828 00d8 007F4141 		.ascii	"\000\177AA\"\034"
+ 828      221C
+ 829 00de 007F4949 		.ascii	"\000\177IIIA"
+ 829      4941
+ 830 00e4 007F0909 		.ascii	"\000\177\011\011\011\001"
+ 830      0901
+ 831 00ea 003E4149 		.ascii	"\000>AIIz"
+ 831      497A
+ 832 00f0 007F0808 		.ascii	"\000\177\010\010\010\177"
+ 832      087F
+ 833 00f6 0000417F 		.ascii	"\000\000A\177A\000"
+ 833      4100
+ 834 00fc 00204041 		.ascii	"\000 @A?\001"
+ 834      3F01
+ 835 0102 007F0814 		.ascii	"\000\177\010\024\"A"
+ 835      2241
+ 836 0108 007F4040 		.ascii	"\000\177@@@@"
+ 836      4040
+ 837 010e 007F020C 		.ascii	"\000\177\002\014\002\177"
+ 837      027F
+ 838 0114 007F0408 		.ascii	"\000\177\004\010\020\177"
+ 838      107F
+ 839 011a 003E4141 		.ascii	"\000>AAA>"
+ 839      413E
+ 840 0120 007F0909 		.ascii	"\000\177\011\011\011\006"
+ 840      0906
+ 841 0126 003E4151 		.ascii	"\000>AQ!^"
+ 841      215E
+ 842 012c 007F0919 		.ascii	"\000\177\011\031)F"
+ 842      2946
+ 843 0132 00464949 		.ascii	"\000FIII1"
+ 843      4931
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 20
+
+
+ 844 0138 0001017F 		.ascii	"\000\001\001\177\001\001"
+ 844      0101
+ 845 013e 003F4040 		.ascii	"\000?@@@?"
+ 845      403F
+ 846 0144 001F2040 		.ascii	"\000\037 @ \037"
+ 846      201F
+ 847 014a 003F4038 		.ascii	"\000?@8@?"
+ 847      403F
+ 848 0150 00631408 		.ascii	"\000c\024\010\024c"
+ 848      1463
+ 849 0156 00070870 		.ascii	"\000\007\010p\010\007"
+ 849      0807
+ 850 015c 00615149 		.ascii	"\000aQIEC"
+ 850      4543
+ 851 0162 00007F41 		.ascii	"\000\000\177AA\000"
+ 851      4100
+ 852 0168 00552A55 		.ascii	"\000U*U*U"
+ 852      2A55
+ 853 016e 00004141 		.ascii	"\000\000AA\177\000"
+ 853      7F00
+ 854 0174 00040201 		.ascii	"\000\004\002\001\002\004"
+ 854      0204
+ 855 017a 00404040 		.ascii	"\000@@@@@"
+ 855      4040
+ 856 0180 00000102 		.ascii	"\000\000\001\002\004\000"
+ 856      0400
+ 857 0186 00205454 		.ascii	"\000 TTTx"
+ 857      5478
+ 858 018c 007F4844 		.ascii	"\000\177HDD8"
+ 858      4438
+ 859 0192 00384444 		.ascii	"\0008DDD "
+ 859      4420
+ 860 0198 00384444 		.ascii	"\0008DDH\177"
+ 860      487F
+ 861 019e 00385454 		.ascii	"\0008TTT\030"
+ 861      5418
+ 862 01a4 00087E09 		.ascii	"\000\010~\011\001\002"
+ 862      0102
+ 863 01aa 0018A4A4 		.ascii	"\000\030\244\244\244|"
+ 863      A47C
+ 864 01b0 007F0804 		.ascii	"\000\177\010\004\004x"
+ 864      0478
+ 865 01b6 0000447D 		.ascii	"\000\000D}@\000"
+ 865      4000
+ 866 01bc 00408084 		.ascii	"\000@\200\204}\000"
+ 866      7D00
+ 867 01c2 007F1028 		.ascii	"\000\177\020(D\000"
+ 867      4400
+ 868 01c8 0000417F 		.ascii	"\000\000A\177@\000"
+ 868      4000
+ 869 01ce 007C0418 		.ascii	"\000|\004\030\004x"
+ 869      0478
+ 870 01d4 007C0804 		.ascii	"\000|\010\004\004x"
+ 870      0478
+ 871 01da 00384444 		.ascii	"\0008DDD8"
+ 871      4438
+ 872 01e0 00FC2424 		.ascii	"\000\374$$$\030"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 21
+
+
+ 872      2418
+ 873 01e6 00182424 		.ascii	"\000\030$$\030\374"
+ 873      18FC
+ 874 01ec 007C0804 		.ascii	"\000|\010\004\004\010"
+ 874      0408
+ 875 01f2 00485454 		.ascii	"\000HTTT "
+ 875      5420
+ 876 01f8 00043F44 		.ascii	"\000\004?D@ "
+ 876      4020
+ 877 01fe 003C4040 		.ascii	"\000<@@ |"
+ 877      207C
+ 878 0204 001C2040 		.ascii	"\000\034 @ \034"
+ 878      201C
+ 879 020a 003C4030 		.ascii	"\000<@0@<"
+ 879      403C
+ 880 0210 00442810 		.ascii	"\000D(\020(D"
+ 880      2844
+ 881 0216 001CA0A0 		.ascii	"\000\034\240\240\240|"
+ 881      A07C
+ 882 021c 00446454 		.ascii	"\000DdTLD"
+ 882      4C44
+ 883 0222 14141414 		.ascii	"\024\024\024\024\024\024"
+ 883      1414
+ 884              		.section	.rodata.F8X16,"a"
+ 885              		.align	2
+ 886              		.set	.LANCHOR1,. + 0
+ 889              	F8X16:
+ 890 0000 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\000\000\000"
+ 890      00000000 
+ 890      00000000 
+ 890      00
+ 891 000d 00000000 		.ascii	"\000\000\000\000\000\000\370\000\000\000\000\000\000"
+ 891      0000F800 
+ 891      00000000 
+ 891      00
+ 892 001a 00333000 		.ascii	"\00030\000\000\000\000\020\014\006\020\014\006\000\000"
+ 892      00000010 
+ 892      0C06100C 
+ 892      060000
+ 893 0029 00000000 		.ascii	"\000\000\000\000\000\000\000@\300x@\300x@\000\004?\004"
+ 893      00000040 
+ 893      C07840C0 
+ 893      78400004 
+ 893      3F04
+ 894 003b 043F0404 		.ascii	"\004?\004\004\000\000p\210\374\0100\000\000\000\030"
+ 894      00007088 
+ 894      FC083000 
+ 894      000018
+ 895 004a 20FF211E 		.ascii	" \377!\036\000\000\360\010\360\000\340\030\000\000\000"
+ 895      0000F008 
+ 895      F000E018 
+ 895      000000
+ 896 0059 211C031E 		.ascii	"!\034\003\036!\036\000\000\360\010\210p\000\000\000"
+ 896      211E0000 
+ 896      F0088870 
+ 896      000000
+ 897 0068 1E212324 		.ascii	"\036!#$\031'!\020\020\026\016\000\000\000\000\000\000"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 22
+
+
+ 897      19272110 
+ 897      10160E00 
+ 897      00000000 
+ 897      00
+ 898 0079 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\340\030\004"
+ 898      00000000 
+ 898      0000E018 
+ 898      04
+ 899 0086 02000000 		.ascii	"\002\000\000\000\000\007\030 @\000\000\002\004\030\340"
+ 899      00071820 
+ 899      40000002 
+ 899      0418E0
+ 900 0095 00000000 		.ascii	"\000\000\000\000@ \030\007\000\000\000@@\200\360\200"
+ 900      40201807 
+ 900      00000040 
+ 900      4080F080 
+ 901 00a5 40400002 		.ascii	"@@\000\002\002\001\017\001\002\002\000\000\000\000\360"
+ 901      02010F01 
+ 901      02020000 
+ 901      0000F0
+ 902 00b4 00000000 		.ascii	"\000\000\000\000\001\001\001\037\001\001\001\000\000"
+ 902      0101011F 
+ 902      01010100 
+ 902      00
+ 903 00c1 00000000 		.ascii	"\000\000\000\000\000\000\000\200\260p\000\000\000\000"
+ 903      00000080 
+ 903      B0700000 
+ 903      0000
+ 904 00cf 00000000 		.ascii	"\000\000\000\000\000\000\000\000\000\000\001\001\001"
+ 904      00000000 
+ 904      00000101 
+ 904      01
+ 905 00dc 01010101 		.ascii	"\001\001\001\001\000\000\000\000\000\000\000\000\000"
+ 905      00000000 
+ 905      00000000 
+ 905      00
+ 906 00e9 30300000 		.ascii	"00\000\000\000\000\000\000\000\000\000\200`\030\004"
+ 906      00000000 
+ 906      00000080 
+ 906      601804
+ 907 00f8 00601806 		.ascii	"\000`\030\006\001\000\000\000\000\340\020\010\010\020"
+ 907      01000000 
+ 907      00E01008 
+ 907      0810
+ 908 0106 E000000F 		.ascii	"\340\000\000\017\020  \020\017\000\000\020\020\370\000"
+ 908      10202010 
+ 908      0F000010 
+ 908      10F800
+ 909 0115 00000000 		.ascii	"\000\000\000\000  ?  \000\000\000p\010\010\010\210p"
+ 909      20203F20 
+ 909      20000000 
+ 909      70080808 
+ 909      8870
+ 910 0127 00003028 		.ascii	"\000\0000($\"!0\000\0000\010\210\210H0\000\000\030 "
+ 910      24222130 
+ 910      00003008 
+ 910      88884830 
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 23
+
+
+ 910      00001820 
+ 911 013b 2020110E 		.ascii	"  \021\016\000\000\000\300 \020\370\000\000\000\007"
+ 911      000000C0 
+ 911      2010F800 
+ 911      000007
+ 912 014a 0424243F 		.ascii	"\004$$?$\000\000\370\010\210\210\010\010\000\000\031"
+ 912      240000F8 
+ 912      08888808 
+ 912      08000019 
+ 913 015a 21202011 		.ascii	"!  \021\016\000\000\340\020\210\210\030\000\000\000"
+ 913      0E0000E0 
+ 913      10888818 
+ 913      000000
+ 914 0169 0F112020 		.ascii	"\017\021  \021\016\000\0008\010\010\3108\010\000\000"
+ 914      110E0000 
+ 914      380808C8 
+ 914      38080000 
+ 915 0179 00003F00 		.ascii	"\000\000?\000\000\000\000\000p\210\010\010\210p\000"
+ 915      00000000 
+ 915      70880808 
+ 915      887000
+ 916 0188 001C2221 		.ascii	"\000\034\"!!\"\034\000\000\340\020\010\010\020\340\000"
+ 916      21221C00 
+ 916      00E01008 
+ 916      0810E000 
+ 917 0198 00003122 		.ascii	"\000\0001\"\"\021\017\000\000\000\000\300\300\000\000"
+ 917      22110F00 
+ 917      000000C0 
+ 917      C00000
+ 918 01a7 00000000 		.ascii	"\000\000\000\00000\000\000\000\000\000\000\200\000\000"
+ 918      30300000 
+ 918      00000000 
+ 918      800000
+ 919 01b6 00000000 		.ascii	"\000\000\000\000\200`\000\000\000\000\000\000\200@ "
+ 919      80600000 
+ 919      00000000 
+ 919      804020
+ 920 01c5 10080000 		.ascii	"\020\010\000\000\001\002\004\010\020 \000@@@@@@@\000"
+ 920      01020408 
+ 920      10200040 
+ 920      40404040 
+ 920      404000
+ 921 01d8 04040404 		.ascii	"\004\004\004\004\004\004\004\000\000\010\020 @\200\000"
+ 921      04040400 
+ 921      00081020 
+ 921      408000
+ 922 01e7 00002010 		.ascii	"\000\000 \020\010\004\002\001\000\000pH\010\010\010"
+ 922      08040201 
+ 922      00007048 
+ 922      080808
+ 923 01f6 F0000000 		.ascii	"\360\000\000\000\00006\001\000\000\3000\310(\350\020"
+ 923      00303601 
+ 923      0000C030 
+ 923      C828E810 
+ 924 0206 E0000718 		.ascii	"\340\000\007\030'$#\024\013\000\000\000\3008\340\000"
+ 924      27242314 
+ 924      0B000000 
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 24
+
+
+ 924      C038E000 
+ 925 0216 0000203C 		.ascii	"\000\000 <#\002\002'8 \010\370\210\210\210p\000\000"
+ 925      23020227 
+ 925      382008F8 
+ 925      88888870 
+ 925      0000
+ 926 0228 203F2020 		.ascii	" ?   \021\016\000\3000\010\010\010\0108\000\007\030"
+ 926      20110E00 
+ 926      C0300808 
+ 926      08083800 
+ 926      0718
+ 927 023a 20202010 		.ascii	"   \020\010\000\010\370\010\010\010\020\340\000 ?  "
+ 927      080008F8 
+ 927      08080810 
+ 927      E000203F 
+ 927      2020
+ 928 024c 20100F00 		.ascii	" \020\017\000\010\370\210\210\350\010\020\000 ?  # "
+ 928      08F88888 
+ 928      E8081000 
+ 928      203F2020 
+ 928      2320
+ 929 025e 180008F8 		.ascii	"\030\000\010\370\210\210\350\010\020\000 ? \000\003"
+ 929      8888E808 
+ 929      1000203F 
+ 929      200003
+ 930 026d 000000C0 		.ascii	"\000\000\000\3000\010\010\0108\000\000\007\030  \"\036"
+ 930      30080808 
+ 930      38000007 
+ 930      18202022 
+ 930      1E
+ 931 027e 020008F8 		.ascii	"\002\000\010\370\010\000\000\010\370\010 ?!\001\001"
+ 931      08000008 
+ 931      F808203F 
+ 931      210101
+ 932 028d 213F2000 		.ascii	"!? \000\010\010\370\010\010\000\000\000  ?  \000\000"
+ 932      0808F808 
+ 932      08000000 
+ 932      20203F20 
+ 932      200000
+ 933 02a0 00000808 		.ascii	"\000\000\010\010\370\010\010\000\300\200\200\200\177"
+ 933      F8080800 
+ 933      C0808080 
+ 933      7F
+ 934 02ad 00000008 		.ascii	"\000\000\000\010\370\210\300(\030\010\000 ? \001&8 "
+ 934      F888C028 
+ 934      18080020 
+ 934      3F200126 
+ 934      3820
+ 935 02bf 0008F808 		.ascii	"\000\010\370\010\000\000\000\000\000 ?    0\000\010"
+ 935      00000000 
+ 935      00203F20 
+ 935      20202030 
+ 935      0008
+ 936 02d1 F8F800F8 		.ascii	"\370\370\000\370\370\010\000 ?\000?\000? \000\010\370"
+ 936      F8080020 
+ 936      3F003F00 
+ 936      3F200008 
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 25
+
+
+ 936      F8
+ 937 02e2 30C00008 		.ascii	"0\300\000\010\370\010 ? \000\007\030?\000\340\020\010"
+ 937      F808203F 
+ 937      20000718 
+ 937      3F00E010 
+ 937      08
+ 938 02f3 080810E0 		.ascii	"\010\010\020\340\000\017\020   \020\017\000\010\370"
+ 938      000F1020 
+ 938      2020100F 
+ 938      0008F8
+ 939 0302 08080808 		.ascii	"\010\010\010\010\360\000 ?!\001\001\001\000\000\340"
+ 939      F000203F 
+ 939      21010101 
+ 939      0000E0
+ 940 0311 10080808 		.ascii	"\020\010\010\010\020\340\000\017\030$$8PO\000\010\370"
+ 940      10E0000F 
+ 940      18242438 
+ 940      504F0008 
+ 940      F8
+ 941 0322 88888888 		.ascii	"\210\210\210\210p\000 ? \000\003\0140 \000p\210\010"
+ 941      7000203F 
+ 941      2000030C 
+ 941      30200070 
+ 941      8808
+ 942 0334 08083800 		.ascii	"\010\0108\000\0008 !!\"\034\000\030\010\010\370\010"
+ 942      00382021 
+ 942      21221C00 
+ 942      180808F8 
+ 942      08
+ 943 0345 08180000 		.ascii	"\010\030\000\000\000 ? \000\000\000\010\370\010\000"
+ 943      00203F20 
+ 943      00000008 
+ 943      F80800
+ 944 0354 0008F808 		.ascii	"\000\010\370\010\000\037    \037\000\010x\210\000\000"
+ 944      001F2020 
+ 944      20201F00 
+ 944      08788800 
+ 944      00
+ 945 0365 C8380800 		.ascii	"\3108\010\000\000\0078\016\001\000\000\370\010\000\370"
+ 945      0007380E 
+ 945      010000F8 
+ 945      0800F8
+ 946 0374 0008F800 		.ascii	"\000\010\370\000\003<\007\000\007<\003\000\010\030h"
+ 946      033C0700 
+ 946      073C0300 
+ 946      081868
+ 947 0383 80806818 		.ascii	"\200\200h\030\010 0,\003\003,0 \0108\310\000\3108\010"
+ 947      0820302C 
+ 947      03032C30 
+ 947      200838C8 
+ 947      00C83808 
+ 948 0397 00000020 		.ascii	"\000\000\000 ? \000\000\000\020\010\010\010\3108\010"
+ 948      3F200000 
+ 948      00100808 
+ 948      08C83808 
+ 949 03a7 00203826 		.ascii	"\000 8&!  \030\000\000\000\000\376\002\002\002\000\000"
+ 949      21202018 
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 26
+
+
+ 949      00000000 
+ 949      FE020202 
+ 949      0000
+ 950 03b9 00007F40 		.ascii	"\000\000\177@@@\000\000\0140\300\000\000\000\000\000"
+ 950      40400000 
+ 950      0C30C000 
+ 950      00000000 
+ 951 03c9 00000106 		.ascii	"\000\000\001\0068\300\000\000\002\002\002\376\000\000"
+ 951      38C00000 
+ 951      020202FE 
+ 951      0000
+ 952 03d7 00004040 		.ascii	"\000\000@@@\177\000\000\000\000\000\004\002\002\002"
+ 952      407F0000 
+ 952      00000004 
+ 952      020202
+ 953 03e6 04000000 		.ascii	"\004\000\000\000\000\000\000\000\000\000\000\000\000"
+ 953      00000000 
+ 953      00000000 
+ 953      00
+ 954 03f3 00000000 		.ascii	"\000\000\000\000\000\200\200\200\200\200\200\200\200"
+ 954      00808080 
+ 954      80808080 
+ 954      80
+ 955 0400 00020204 		.ascii	"\000\002\002\004\000\000\000\000\000\000\000\000\000"
+ 955      00000000 
+ 955      00000000 
+ 955      00
+ 956 040d 00000000 		.ascii	"\000\000\000\000\000\200\200\200\200\000\000\000\031"
+ 956      00808080 
+ 956      80000000 
+ 956      19
+ 957 041a 24222222 		.ascii	"$\"\"\"? \010\370\000\200\200\000\000\000\000?\021 "
+ 957      3F2008F8 
+ 957      00808000 
+ 957      0000003F 
+ 957      1120
+ 958 042c 20110E00 		.ascii	" \021\016\000\000\000\000\200\200\200\000\000\000\016"
+ 958      00000080 
+ 958      80800000 
+ 958      000E
+ 959 043a 11202020 		.ascii	"\021   \021\000\000\000\000\200\200\210\370\000\000"
+ 959      11000000 
+ 959      00808088 
+ 959      F80000
+ 960 0449 0E112020 		.ascii	"\016\021  \020? \000\000\200\200\200\200\000\000\000"
+ 960      103F2000 
+ 960      00808080 
+ 960      80000000 
+ 961 0459 1F222222 		.ascii	"\037\"\"\"\"\023\000\000\200\200\360\210\210\210\030"
+ 961      22130000 
+ 961      8080F088 
+ 961      888818
+ 962 0468 0020203F 		.ascii	"\000  ?  \000\000\000\000\200\200\200\200\200\000\000"
+ 962      20200000 
+ 962      00008080 
+ 962      80808000 
+ 962      00
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 27
+
+
+ 963 0479 6B949494 		.ascii	"k\224\224\224\223`\000\010\370\000\200\200\200\000\000"
+ 963      93600008 
+ 963      F8008080 
+ 963      800000
+ 964 0488 203F2100 		.ascii	" ?!\000\000 ? \000\200\230\230\000\000\000\000\000 "
+ 964      00203F20 
+ 964      00809898 
+ 964      00000000 
+ 964      0020
+ 965 049a 203F2020 		.ascii	" ?  \000\000\000\000\000\200\230\230\000\000\000\300"
+ 965      00000000 
+ 965      00809898 
+ 965      000000C0 
+ 966 04aa 8080807F 		.ascii	"\200\200\200\177\000\000\010\370\000\000\200\200\200"
+ 966      000008F8 
+ 966      00008080 
+ 966      80
+ 967 04b7 00203F24 		.ascii	"\000 ?$\002-0 \000\000\010\010\370\000\000\000\000\000"
+ 967      022D3020 
+ 967      00000808 
+ 967      F8000000 
+ 967      0000
+ 968 04c9 20203F20 		.ascii	"  ?  \000\000\200\200\200\200\200\200\200\000 ? \000"
+ 968      20000080 
+ 968      80808080 
+ 968      80800020 
+ 968      3F2000
+ 969 04dc 3F20003F 		.ascii	"? \000?\200\200\000\200\200\200\000\000 ?!\000\000 "
+ 969      80800080 
+ 969      80800000 
+ 969      203F2100 
+ 969      0020
+ 970 04ee 3F200000 		.ascii	"? \000\000\200\200\200\200\000\000\000\037    \037\000"
+ 970      80808080 
+ 970      0000001F 
+ 970      20202020 
+ 970      1F00
+ 971 0500 80800080 		.ascii	"\200\200\000\200\200\000\000\000\200\377\241  \021\016"
+ 971      80000000 
+ 971      80FFA120 
+ 971      20110E
+ 972 050f 00000000 		.ascii	"\000\000\000\000\200\200\200\200\000\000\016\021  \240"
+ 972      80808080 
+ 972      00000E11 
+ 972      2020A0
+ 973 051e FF808080 		.ascii	"\377\200\200\200\200\000\200\200\200\000  ?! \000\001"
+ 973      80008080 
+ 973      80002020 
+ 973      3F212000 
+ 973      01
+ 974 052f 00000080 		.ascii	"\000\000\000\200\200\200\200\200\000\0003$$$$\031\000"
+ 974      80808080 
+ 974      00003324 
+ 974      24242419 
+ 974      00
+ 975 0540 008080E0 		.ascii	"\000\200\200\340\200\200\000\000\000\000\000\037  \000"
+ 975      80800000 
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 28
+
+
+ 975      0000001F 
+ 975      202000
+ 976 054f 00808000 		.ascii	"\000\200\200\000\000\000\200\200\000\000\037   \020"
+ 976      00008080 
+ 976      00001F20 
+ 976      202010
+ 977 055e 3F208080 		.ascii	"? \200\200\200\000\000\200\200\200\000\001\0160\010"
+ 977      80000080 
+ 977      80800001 
+ 977      0E3008
+ 978 056d 06010080 		.ascii	"\006\001\000\200\200\000\200\000\200\200\200\0170\014"
+ 978      80008000 
+ 978      8080800F 
+ 978      300C
+ 979 057b 030C300F 		.ascii	"\003\0140\017\000\000\200\200\000\200\200\200\000\000"
+ 979      00008080 
+ 979      00808080 
+ 979      0000
+ 980 0589 20312E0E 		.ascii	" 1.\0161 \000\200\200\200\000\000\200\200\200\200\201"
+ 980      31200080 
+ 980      80800000 
+ 980      80808080 
+ 980      81
+ 981 059a 8E701806 		.ascii	"\216p\030\006\001\000\000\200\200\200\200\200\200\000"
+ 981      01000080 
+ 981      80808080 
+ 981      8000
+ 982 05a8 0021302C 		.ascii	"\000!0,\"!0\000\000\000\000\000\200|\002\002\000\000"
+ 982      22213000 
+ 982      00000000 
+ 982      807C0202 
+ 982      0000
+ 983 05ba 0000003F 		.ascii	"\000\000\000?@@\000\000\000\000\377\000\000\000\000"
+ 983      40400000 
+ 983      0000FF00 
+ 983      000000
+ 984 05c9 000000FF 		.ascii	"\000\000\000\377\000\000\000\000\002\002|\200\000\000"
+ 984      00000000 
+ 984      02027C80 
+ 984      0000
+ 985 05d7 00004040 		.ascii	"\000\000@@?\000\000\000\000\000\006\001\001\002\002"
+ 985      3F000000 
+ 985      00000601 
+ 985      010202
+ 986 05e6 04040000 		.ascii	"\004\004\000\000\000\000\000\000\000\000"
+ 986      00000000 
+ 986      0000
+ 987              		.text
+ 988              	.Letext0:
+ 989              		.file 2 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/machine/_default_types.h"
+ 990              		.file 3 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 991              		.file 4 "/opt/gcc-arm-none-eabi-9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h"
+ 992              		.file 5 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_types.h"
+ 993              		.file 6 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/reent.h"
+ 994              		.file 7 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/lock.h"
+ 995              		.file 8 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/stdlib.h"
+ 996              		.file 9 "Drivers/CMSIS/Include/core_cm3.h"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 29
+
+
+ 997              		.file 10 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h"
+ 998              		.file 11 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 999              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 1000              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 1001              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
+ 1002              		.file 15 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 1003              		.file 16 "Core/Inc/i2c.h"
+ 1004              		.file 17 "sensor_drive/oled.h"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s 			page 30
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 oled.c
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:16     .text.oled_init:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:24     .text.oled_init:0000000000000000 oled_init
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:407    .text.oled_init:0000000000000254 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:412    .text.oled_set_pos:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:419    .text.oled_set_pos:0000000000000000 oled_set_pos
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:496    .text.oled_set_pos:0000000000000054 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:501    .text.oled_show_str:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:508    .text.oled_show_str:0000000000000000 oled_show_str
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:778    .text.oled_show_str:0000000000000104 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:889    .rodata.F8X16:0000000000000000 F8X16
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:791    .rodata.F6x8:0000000000000000 F6x8
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:787    .rodata.F6x8:0000000000000000 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccfWYOiA.s:885    .rodata.F8X16:0000000000000000 $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Write
+hi2c1

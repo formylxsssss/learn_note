@@ -1,0 +1,12 @@
+{
+    "files.associations": {
+        "stdint.h": "c",
+        "stddef.h": "c",
+        "stm32f1xx_hal.h": "c",
+        "freertos.h": "c",
+        "task.h": "c",
+        "segger_rtt.h": "c",
+        "i2c.h": "c",
+        "stdlib.h": "c"
+    }
+}

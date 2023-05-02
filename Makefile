@@ -18,6 +18,8 @@ MCU_ID = STM32F103C8T6
 ALLCSRC =
 ALLINC =
 include ARM_SEGGER_RTT/segger_rtt.mk
+include sensor_drive/sensor_drive.mk
+include sensor_service/sensor_service.mk
 ######################################
 # building variables
 ######################################

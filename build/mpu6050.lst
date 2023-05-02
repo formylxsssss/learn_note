@@ -1,0 +1,909 @@
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 1
+
+
+   1              		.cpu cortex-m3
+   2              		.eabi_attribute 20, 1
+   3              		.eabi_attribute 21, 1
+   4              		.eabi_attribute 23, 3
+   5              		.eabi_attribute 24, 1
+   6              		.eabi_attribute 25, 1
+   7              		.eabi_attribute 26, 1
+   8              		.eabi_attribute 30, 1
+   9              		.eabi_attribute 34, 1
+  10              		.eabi_attribute 18, 4
+  11              		.file	"mpu6050.c"
+  12              		.text
+  13              	.Ltext0:
+  14              		.cfi_sections	.debug_frame
+  15              		.section	.text.mpu6050_init,"ax",%progbits
+  16              		.align	1
+  17              		.global	mpu6050_init
+  18              		.arch armv7-m
+  19              		.syntax unified
+  20              		.thumb
+  21              		.thumb_func
+  22              		.fpu softvfp
+  24              	mpu6050_init:
+  25              	.LFB65:
+  26              		.file 1 "sensor_drive/mpu6050.c"
+   1:sensor_drive/mpu6050.c **** #include <stddef.h>
+   2:sensor_drive/mpu6050.c **** #include <stdlib.h>
+   3:sensor_drive/mpu6050.c **** #include <stdint.h>
+   4:sensor_drive/mpu6050.c **** #include "stm32f1xx_hal.h"
+   5:sensor_drive/mpu6050.c **** #include "i2c.h"
+   6:sensor_drive/mpu6050.c **** #include "SEGGER_RTT.h"
+   7:sensor_drive/mpu6050.c **** #include "mpu6050.h"
+   8:sensor_drive/mpu6050.c **** int mpu6050_init(void)
+   9:sensor_drive/mpu6050.c **** {
+  27              		.loc 1 9 1 view -0
+  28              		.cfi_startproc
+  29              		@ args = 0, pretend = 0, frame = 0
+  30              		@ frame_needed = 0, uses_anonymous_args = 0
+  31 0000 70B5     		push	{r4, r5, r6, lr}
+  32              	.LCFI0:
+  33              		.cfi_def_cfa_offset 16
+  34              		.cfi_offset 4, -16
+  35              		.cfi_offset 5, -12
+  36              		.cfi_offset 6, -8
+  37              		.cfi_offset 14, -4
+  38 0002 84B0     		sub	sp, sp, #16
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 32
+  10:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef init_status;
+  41              		.loc 1 10 3 view .LVU1
+  11:sensor_drive/mpu6050.c ****   init_status = HAL_I2C_Mem_Write(&hi2c1, SlAVEADDER, PWR_MGMT_1, I2C_MEMADD_SIZE_8BIT, 0x00, 1, 2)
+  42              		.loc 1 11 3 view .LVU2
+  43              		.loc 1 11 17 is_stmt 0 view .LVU3
+  44 0004 1C4D     		ldr	r5, .L6
+  45 0006 0226     		movs	r6, #2
+  46 0008 0296     		str	r6, [sp, #8]
+  47 000a 0124     		movs	r4, #1
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 2
+
+
+  48 000c 0194     		str	r4, [sp, #4]
+  49 000e 0023     		movs	r3, #0
+  50 0010 0093     		str	r3, [sp]
+  51 0012 2346     		mov	r3, r4
+  52 0014 6B22     		movs	r2, #107
+  53 0016 D021     		movs	r1, #208
+  54 0018 2846     		mov	r0, r5
+  55 001a FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  56              	.LVL0:
+  12:sensor_drive/mpu6050.c ****   init_status = HAL_I2C_Mem_Write(&hi2c1, SlAVEADDER, SMPLRT_DIV, I2C_MEMADD_SIZE_8BIT, 0x07, 1, 2)
+  57              		.loc 1 12 3 is_stmt 1 view .LVU4
+  58              		.loc 1 12 17 is_stmt 0 view .LVU5
+  59 001e 0296     		str	r6, [sp, #8]
+  60 0020 0194     		str	r4, [sp, #4]
+  61 0022 0723     		movs	r3, #7
+  62 0024 0093     		str	r3, [sp]
+  63 0026 2346     		mov	r3, r4
+  64 0028 1922     		movs	r2, #25
+  65 002a D021     		movs	r1, #208
+  66 002c 2846     		mov	r0, r5
+  67 002e FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  68              	.LVL1:
+  13:sensor_drive/mpu6050.c ****   init_status = HAL_I2C_Mem_Write(&hi2c1, SlAVEADDER, CONFIG, I2C_MEMADD_SIZE_8BIT, 0x06, 1, 2);
+  69              		.loc 1 13 3 is_stmt 1 view .LVU6
+  70              		.loc 1 13 17 is_stmt 0 view .LVU7
+  71 0032 0296     		str	r6, [sp, #8]
+  72 0034 0194     		str	r4, [sp, #4]
+  73 0036 0623     		movs	r3, #6
+  74 0038 0093     		str	r3, [sp]
+  75 003a 2346     		mov	r3, r4
+  76 003c 1A22     		movs	r2, #26
+  77 003e D021     		movs	r1, #208
+  78 0040 2846     		mov	r0, r5
+  79 0042 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  80              	.LVL2:
+  14:sensor_drive/mpu6050.c ****   init_status = HAL_I2C_Mem_Write(&hi2c1, SlAVEADDER, GYRO_CONFIG, I2C_MEMADD_SIZE_8BIT, 0x18, 1, 2
+  81              		.loc 1 14 3 is_stmt 1 view .LVU8
+  82              		.loc 1 14 17 is_stmt 0 view .LVU9
+  83 0046 0296     		str	r6, [sp, #8]
+  84 0048 0194     		str	r4, [sp, #4]
+  85 004a 1823     		movs	r3, #24
+  86 004c 0093     		str	r3, [sp]
+  87 004e 2346     		mov	r3, r4
+  88 0050 1B22     		movs	r2, #27
+  89 0052 D021     		movs	r1, #208
+  90 0054 2846     		mov	r0, r5
+  91 0056 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+  92              	.LVL3:
+  15:sensor_drive/mpu6050.c ****   init_status = HAL_I2C_Mem_Write(&hi2c1, SlAVEADDER, ACCEL_CONFIG, I2C_MEMADD_SIZE_8BIT, 0x01, 1, 
+  93              		.loc 1 15 3 is_stmt 1 view .LVU10
+  94              		.loc 1 15 17 is_stmt 0 view .LVU11
+  95 005a 0296     		str	r6, [sp, #8]
+  96 005c 0194     		str	r4, [sp, #4]
+  97 005e 0094     		str	r4, [sp]
+  98 0060 2346     		mov	r3, r4
+  99 0062 1C22     		movs	r2, #28
+ 100 0064 D021     		movs	r1, #208
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 3
+
+
+ 101 0066 2846     		mov	r0, r5
+ 102 0068 FFF7FEFF 		bl	HAL_I2C_Mem_Write
+ 103              	.LVL4:
+  16:sensor_drive/mpu6050.c ****   if (init_status == HAL_OK)
+ 104              		.loc 1 16 3 is_stmt 1 view .LVU12
+ 105              		.loc 1 16 6 is_stmt 0 view .LVU13
+ 106 006c 08B9     		cbnz	r0, .L5
+ 107              	.LVL5:
+ 108              	.L1:
+  17:sensor_drive/mpu6050.c ****   {
+  18:sensor_drive/mpu6050.c ****     return 0;
+  19:sensor_drive/mpu6050.c ****   }
+  20:sensor_drive/mpu6050.c ****   else
+  21:sensor_drive/mpu6050.c ****   {
+  22:sensor_drive/mpu6050.c ****     return -1;
+  23:sensor_drive/mpu6050.c ****   }
+  24:sensor_drive/mpu6050.c **** }
+ 109              		.loc 1 24 1 view .LVU14
+ 110 006e 04B0     		add	sp, sp, #16
+ 111              	.LCFI2:
+ 112              		.cfi_remember_state
+ 113              		.cfi_def_cfa_offset 16
+ 114              		@ sp needed
+ 115 0070 70BD     		pop	{r4, r5, r6, pc}
+ 116              	.LVL6:
+ 117              	.L5:
+ 118              	.LCFI3:
+ 119              		.cfi_restore_state
+  22:sensor_drive/mpu6050.c ****   }
+ 120              		.loc 1 22 12 view .LVU15
+ 121 0072 4FF0FF30 		mov	r0, #-1
+ 122              	.LVL7:
+  22:sensor_drive/mpu6050.c ****   }
+ 123              		.loc 1 22 12 view .LVU16
+ 124 0076 FAE7     		b	.L1
+ 125              	.L7:
+ 126              		.align	2
+ 127              	.L6:
+ 128 0078 00000000 		.word	hi2c1
+ 129              		.cfi_endproc
+ 130              	.LFE65:
+ 132              		.section	.text.get_mpu6050_x_acc,"ax",%progbits
+ 133              		.align	1
+ 134              		.global	get_mpu6050_x_acc
+ 135              		.syntax unified
+ 136              		.thumb
+ 137              		.thumb_func
+ 138              		.fpu softvfp
+ 140              	get_mpu6050_x_acc:
+ 141              	.LVL8:
+ 142              	.LFB66:
+  25:sensor_drive/mpu6050.c **** int get_mpu6050_x_acc(int* data)
+  26:sensor_drive/mpu6050.c **** {
+ 143              		.loc 1 26 1 is_stmt 1 view -0
+ 144              		.cfi_startproc
+ 145              		@ args = 0, pretend = 0, frame = 8
+ 146              		@ frame_needed = 0, uses_anonymous_args = 0
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 4
+
+
+ 147              		.loc 1 26 1 is_stmt 0 view .LVU18
+ 148 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 149              	.LCFI4:
+ 150              		.cfi_def_cfa_offset 20
+ 151              		.cfi_offset 4, -20
+ 152              		.cfi_offset 5, -16
+ 153              		.cfi_offset 6, -12
+ 154              		.cfi_offset 7, -8
+ 155              		.cfi_offset 14, -4
+ 156 0002 87B0     		sub	sp, sp, #28
+ 157              	.LCFI5:
+ 158              		.cfi_def_cfa_offset 48
+ 159 0004 0546     		mov	r5, r0
+  27:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 160              		.loc 1 27 3 is_stmt 1 view .LVU19
+  28:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 161              		.loc 1 28 3 view .LVU20
+  29:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_x_acc_status;
+ 162              		.loc 1 29 3 view .LVU21
+  30:sensor_drive/mpu6050.c ****   get_x_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_XOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 163              		.loc 1 30 3 view .LVU22
+ 164              		.loc 1 30 22 is_stmt 0 view .LVU23
+ 165 0006 114E     		ldr	r6, .L13
+ 166 0008 0227     		movs	r7, #2
+ 167 000a 0297     		str	r7, [sp, #8]
+ 168 000c 0124     		movs	r4, #1
+ 169 000e 0194     		str	r4, [sp, #4]
+ 170 0010 0DF11703 		add	r3, sp, #23
+ 171 0014 0093     		str	r3, [sp]
+ 172 0016 2346     		mov	r3, r4
+ 173 0018 3B22     		movs	r2, #59
+ 174 001a D021     		movs	r1, #208
+ 175 001c 3046     		mov	r0, r6
+ 176              	.LVL9:
+ 177              		.loc 1 30 22 view .LVU24
+ 178 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 179              	.LVL10:
+  31:sensor_drive/mpu6050.c ****   get_x_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_XOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 180              		.loc 1 31 3 is_stmt 1 view .LVU25
+ 181              		.loc 1 31 22 is_stmt 0 view .LVU26
+ 182 0022 0297     		str	r7, [sp, #8]
+ 183 0024 0194     		str	r4, [sp, #4]
+ 184 0026 0DF11603 		add	r3, sp, #22
+ 185 002a 0093     		str	r3, [sp]
+ 186 002c 2346     		mov	r3, r4
+ 187 002e 3C22     		movs	r2, #60
+ 188 0030 D021     		movs	r1, #208
+ 189 0032 3046     		mov	r0, r6
+ 190 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 191              	.LVL11:
+  32:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 192              		.loc 1 32 3 is_stmt 1 view .LVU27
+ 193              		.loc 1 32 27 is_stmt 0 view .LVU28
+ 194 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 195              		.loc 1 32 9 view .LVU29
+ 196 003c 2B60     		str	r3, [r5]
+  33:sensor_drive/mpu6050.c ****   if (get_x_acc_status == HAL_OK)
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 5
+
+
+ 197              		.loc 1 33 3 is_stmt 1 view .LVU30
+ 198              		.loc 1 33 6 is_stmt 0 view .LVU31
+ 199 003e 08B9     		cbnz	r0, .L12
+ 200              	.LVL12:
+ 201              	.L8:
+  34:sensor_drive/mpu6050.c ****   {
+  35:sensor_drive/mpu6050.c ****     return 0;
+  36:sensor_drive/mpu6050.c ****   }
+  37:sensor_drive/mpu6050.c ****   else
+  38:sensor_drive/mpu6050.c ****   {
+  39:sensor_drive/mpu6050.c ****     return -1;
+  40:sensor_drive/mpu6050.c ****   }
+  41:sensor_drive/mpu6050.c **** }
+ 202              		.loc 1 41 1 view .LVU32
+ 203 0040 07B0     		add	sp, sp, #28
+ 204              	.LCFI6:
+ 205              		.cfi_remember_state
+ 206              		.cfi_def_cfa_offset 20
+ 207              		@ sp needed
+ 208 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 209              	.LVL13:
+ 210              	.L12:
+ 211              	.LCFI7:
+ 212              		.cfi_restore_state
+  39:sensor_drive/mpu6050.c ****   }
+ 213              		.loc 1 39 12 view .LVU33
+ 214 0044 4FF0FF30 		mov	r0, #-1
+ 215              	.LVL14:
+  39:sensor_drive/mpu6050.c ****   }
+ 216              		.loc 1 39 12 view .LVU34
+ 217 0048 FAE7     		b	.L8
+ 218              	.L14:
+ 219 004a 00BF     		.align	2
+ 220              	.L13:
+ 221 004c 00000000 		.word	hi2c1
+ 222              		.cfi_endproc
+ 223              	.LFE66:
+ 225              		.section	.text.get_mpu6050_y_acc,"ax",%progbits
+ 226              		.align	1
+ 227              		.global	get_mpu6050_y_acc
+ 228              		.syntax unified
+ 229              		.thumb
+ 230              		.thumb_func
+ 231              		.fpu softvfp
+ 233              	get_mpu6050_y_acc:
+ 234              	.LVL15:
+ 235              	.LFB67:
+  42:sensor_drive/mpu6050.c **** 
+  43:sensor_drive/mpu6050.c **** int get_mpu6050_y_acc(int* data)
+  44:sensor_drive/mpu6050.c **** {
+ 236              		.loc 1 44 1 is_stmt 1 view -0
+ 237              		.cfi_startproc
+ 238              		@ args = 0, pretend = 0, frame = 8
+ 239              		@ frame_needed = 0, uses_anonymous_args = 0
+ 240              		.loc 1 44 1 is_stmt 0 view .LVU36
+ 241 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 242              	.LCFI8:
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 6
+
+
+ 243              		.cfi_def_cfa_offset 20
+ 244              		.cfi_offset 4, -20
+ 245              		.cfi_offset 5, -16
+ 246              		.cfi_offset 6, -12
+ 247              		.cfi_offset 7, -8
+ 248              		.cfi_offset 14, -4
+ 249 0002 87B0     		sub	sp, sp, #28
+ 250              	.LCFI9:
+ 251              		.cfi_def_cfa_offset 48
+ 252 0004 0546     		mov	r5, r0
+  45:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 253              		.loc 1 45 3 is_stmt 1 view .LVU37
+  46:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 254              		.loc 1 46 3 view .LVU38
+  47:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_y_acc_status;
+ 255              		.loc 1 47 3 view .LVU39
+  48:sensor_drive/mpu6050.c ****   get_y_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_YOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 256              		.loc 1 48 3 view .LVU40
+ 257              		.loc 1 48 22 is_stmt 0 view .LVU41
+ 258 0006 114E     		ldr	r6, .L20
+ 259 0008 0227     		movs	r7, #2
+ 260 000a 0297     		str	r7, [sp, #8]
+ 261 000c 0124     		movs	r4, #1
+ 262 000e 0194     		str	r4, [sp, #4]
+ 263 0010 0DF11703 		add	r3, sp, #23
+ 264 0014 0093     		str	r3, [sp]
+ 265 0016 2346     		mov	r3, r4
+ 266 0018 3D22     		movs	r2, #61
+ 267 001a D021     		movs	r1, #208
+ 268 001c 3046     		mov	r0, r6
+ 269              	.LVL16:
+ 270              		.loc 1 48 22 view .LVU42
+ 271 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 272              	.LVL17:
+  49:sensor_drive/mpu6050.c ****   get_y_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_YOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 273              		.loc 1 49 3 is_stmt 1 view .LVU43
+ 274              		.loc 1 49 22 is_stmt 0 view .LVU44
+ 275 0022 0297     		str	r7, [sp, #8]
+ 276 0024 0194     		str	r4, [sp, #4]
+ 277 0026 0DF11603 		add	r3, sp, #22
+ 278 002a 0093     		str	r3, [sp]
+ 279 002c 2346     		mov	r3, r4
+ 280 002e 3E22     		movs	r2, #62
+ 281 0030 D021     		movs	r1, #208
+ 282 0032 3046     		mov	r0, r6
+ 283 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 284              	.LVL18:
+  50:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 285              		.loc 1 50 3 is_stmt 1 view .LVU45
+ 286              		.loc 1 50 27 is_stmt 0 view .LVU46
+ 287 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 288              		.loc 1 50 9 view .LVU47
+ 289 003c 2B60     		str	r3, [r5]
+  51:sensor_drive/mpu6050.c ****   if(get_y_acc_status == HAL_OK)
+ 290              		.loc 1 51 3 is_stmt 1 view .LVU48
+ 291              		.loc 1 51 5 is_stmt 0 view .LVU49
+ 292 003e 08B9     		cbnz	r0, .L19
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 7
+
+
+ 293              	.LVL19:
+ 294              	.L15:
+  52:sensor_drive/mpu6050.c ****   {
+  53:sensor_drive/mpu6050.c ****     return 0;
+  54:sensor_drive/mpu6050.c ****   }
+  55:sensor_drive/mpu6050.c ****   else 
+  56:sensor_drive/mpu6050.c ****   {
+  57:sensor_drive/mpu6050.c ****     return -1;
+  58:sensor_drive/mpu6050.c ****   }
+  59:sensor_drive/mpu6050.c **** }
+ 295              		.loc 1 59 1 view .LVU50
+ 296 0040 07B0     		add	sp, sp, #28
+ 297              	.LCFI10:
+ 298              		.cfi_remember_state
+ 299              		.cfi_def_cfa_offset 20
+ 300              		@ sp needed
+ 301 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 302              	.LVL20:
+ 303              	.L19:
+ 304              	.LCFI11:
+ 305              		.cfi_restore_state
+  57:sensor_drive/mpu6050.c ****   }
+ 306              		.loc 1 57 12 view .LVU51
+ 307 0044 4FF0FF30 		mov	r0, #-1
+ 308              	.LVL21:
+  57:sensor_drive/mpu6050.c ****   }
+ 309              		.loc 1 57 12 view .LVU52
+ 310 0048 FAE7     		b	.L15
+ 311              	.L21:
+ 312 004a 00BF     		.align	2
+ 313              	.L20:
+ 314 004c 00000000 		.word	hi2c1
+ 315              		.cfi_endproc
+ 316              	.LFE67:
+ 318              		.section	.text.get_mpu6050_z_acc,"ax",%progbits
+ 319              		.align	1
+ 320              		.global	get_mpu6050_z_acc
+ 321              		.syntax unified
+ 322              		.thumb
+ 323              		.thumb_func
+ 324              		.fpu softvfp
+ 326              	get_mpu6050_z_acc:
+ 327              	.LVL22:
+ 328              	.LFB68:
+  60:sensor_drive/mpu6050.c **** int get_mpu6050_z_acc(int* data)
+  61:sensor_drive/mpu6050.c **** {
+ 329              		.loc 1 61 1 is_stmt 1 view -0
+ 330              		.cfi_startproc
+ 331              		@ args = 0, pretend = 0, frame = 8
+ 332              		@ frame_needed = 0, uses_anonymous_args = 0
+ 333              		.loc 1 61 1 is_stmt 0 view .LVU54
+ 334 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 335              	.LCFI12:
+ 336              		.cfi_def_cfa_offset 20
+ 337              		.cfi_offset 4, -20
+ 338              		.cfi_offset 5, -16
+ 339              		.cfi_offset 6, -12
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 8
+
+
+ 340              		.cfi_offset 7, -8
+ 341              		.cfi_offset 14, -4
+ 342 0002 87B0     		sub	sp, sp, #28
+ 343              	.LCFI13:
+ 344              		.cfi_def_cfa_offset 48
+ 345 0004 0546     		mov	r5, r0
+  62:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 346              		.loc 1 62 3 is_stmt 1 view .LVU55
+  63:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 347              		.loc 1 63 3 view .LVU56
+  64:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_z_acc_status;
+ 348              		.loc 1 64 3 view .LVU57
+  65:sensor_drive/mpu6050.c ****   get_z_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_ZOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 349              		.loc 1 65 3 view .LVU58
+ 350              		.loc 1 65 22 is_stmt 0 view .LVU59
+ 351 0006 114E     		ldr	r6, .L27
+ 352 0008 0227     		movs	r7, #2
+ 353 000a 0297     		str	r7, [sp, #8]
+ 354 000c 0124     		movs	r4, #1
+ 355 000e 0194     		str	r4, [sp, #4]
+ 356 0010 0DF11703 		add	r3, sp, #23
+ 357 0014 0093     		str	r3, [sp]
+ 358 0016 2346     		mov	r3, r4
+ 359 0018 3F22     		movs	r2, #63
+ 360 001a D021     		movs	r1, #208
+ 361 001c 3046     		mov	r0, r6
+ 362              	.LVL23:
+ 363              		.loc 1 65 22 view .LVU60
+ 364 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 365              	.LVL24:
+  66:sensor_drive/mpu6050.c ****   get_z_acc_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, ACCEL_ZOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 366              		.loc 1 66 3 is_stmt 1 view .LVU61
+ 367              		.loc 1 66 22 is_stmt 0 view .LVU62
+ 368 0022 0297     		str	r7, [sp, #8]
+ 369 0024 0194     		str	r4, [sp, #4]
+ 370 0026 0DF11603 		add	r3, sp, #22
+ 371 002a 0093     		str	r3, [sp]
+ 372 002c 2346     		mov	r3, r4
+ 373 002e 4022     		movs	r2, #64
+ 374 0030 D021     		movs	r1, #208
+ 375 0032 3046     		mov	r0, r6
+ 376 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 377              	.LVL25:
+  67:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 378              		.loc 1 67 3 is_stmt 1 view .LVU63
+ 379              		.loc 1 67 27 is_stmt 0 view .LVU64
+ 380 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 381              		.loc 1 67 9 view .LVU65
+ 382 003c 2B60     		str	r3, [r5]
+  68:sensor_drive/mpu6050.c ****   if(get_z_acc_status == HAL_OK)
+ 383              		.loc 1 68 3 is_stmt 1 view .LVU66
+ 384              		.loc 1 68 5 is_stmt 0 view .LVU67
+ 385 003e 08B9     		cbnz	r0, .L26
+ 386              	.LVL26:
+ 387              	.L22:
+  69:sensor_drive/mpu6050.c ****   {
+  70:sensor_drive/mpu6050.c ****     return 0;
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 9
+
+
+  71:sensor_drive/mpu6050.c ****   }
+  72:sensor_drive/mpu6050.c ****   else 
+  73:sensor_drive/mpu6050.c ****   {
+  74:sensor_drive/mpu6050.c ****     return -1;
+  75:sensor_drive/mpu6050.c ****   }
+  76:sensor_drive/mpu6050.c **** }
+ 388              		.loc 1 76 1 view .LVU68
+ 389 0040 07B0     		add	sp, sp, #28
+ 390              	.LCFI14:
+ 391              		.cfi_remember_state
+ 392              		.cfi_def_cfa_offset 20
+ 393              		@ sp needed
+ 394 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 395              	.LVL27:
+ 396              	.L26:
+ 397              	.LCFI15:
+ 398              		.cfi_restore_state
+  74:sensor_drive/mpu6050.c ****   }
+ 399              		.loc 1 74 12 view .LVU69
+ 400 0044 4FF0FF30 		mov	r0, #-1
+ 401              	.LVL28:
+  74:sensor_drive/mpu6050.c ****   }
+ 402              		.loc 1 74 12 view .LVU70
+ 403 0048 FAE7     		b	.L22
+ 404              	.L28:
+ 405 004a 00BF     		.align	2
+ 406              	.L27:
+ 407 004c 00000000 		.word	hi2c1
+ 408              		.cfi_endproc
+ 409              	.LFE68:
+ 411              		.section	.text.get_mpu6050_x_gyro,"ax",%progbits
+ 412              		.align	1
+ 413              		.global	get_mpu6050_x_gyro
+ 414              		.syntax unified
+ 415              		.thumb
+ 416              		.thumb_func
+ 417              		.fpu softvfp
+ 419              	get_mpu6050_x_gyro:
+ 420              	.LVL29:
+ 421              	.LFB69:
+  77:sensor_drive/mpu6050.c **** int get_mpu6050_x_gyro(int* data)
+  78:sensor_drive/mpu6050.c **** {
+ 422              		.loc 1 78 1 is_stmt 1 view -0
+ 423              		.cfi_startproc
+ 424              		@ args = 0, pretend = 0, frame = 8
+ 425              		@ frame_needed = 0, uses_anonymous_args = 0
+ 426              		.loc 1 78 1 is_stmt 0 view .LVU72
+ 427 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 428              	.LCFI16:
+ 429              		.cfi_def_cfa_offset 20
+ 430              		.cfi_offset 4, -20
+ 431              		.cfi_offset 5, -16
+ 432              		.cfi_offset 6, -12
+ 433              		.cfi_offset 7, -8
+ 434              		.cfi_offset 14, -4
+ 435 0002 87B0     		sub	sp, sp, #28
+ 436              	.LCFI17:
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 10
+
+
+ 437              		.cfi_def_cfa_offset 48
+ 438 0004 0546     		mov	r5, r0
+  79:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 439              		.loc 1 79 3 is_stmt 1 view .LVU73
+  80:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 440              		.loc 1 80 3 view .LVU74
+  81:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_x_gyro_status;
+ 441              		.loc 1 81 3 view .LVU75
+  82:sensor_drive/mpu6050.c ****   get_x_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_XOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 442              		.loc 1 82 3 view .LVU76
+ 443              		.loc 1 82 23 is_stmt 0 view .LVU77
+ 444 0006 114E     		ldr	r6, .L34
+ 445 0008 0227     		movs	r7, #2
+ 446 000a 0297     		str	r7, [sp, #8]
+ 447 000c 0124     		movs	r4, #1
+ 448 000e 0194     		str	r4, [sp, #4]
+ 449 0010 0DF11703 		add	r3, sp, #23
+ 450 0014 0093     		str	r3, [sp]
+ 451 0016 2346     		mov	r3, r4
+ 452 0018 4322     		movs	r2, #67
+ 453 001a D021     		movs	r1, #208
+ 454 001c 3046     		mov	r0, r6
+ 455              	.LVL30:
+ 456              		.loc 1 82 23 view .LVU78
+ 457 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 458              	.LVL31:
+  83:sensor_drive/mpu6050.c ****   get_x_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_XOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 459              		.loc 1 83 3 is_stmt 1 view .LVU79
+ 460              		.loc 1 83 23 is_stmt 0 view .LVU80
+ 461 0022 0297     		str	r7, [sp, #8]
+ 462 0024 0194     		str	r4, [sp, #4]
+ 463 0026 0DF11603 		add	r3, sp, #22
+ 464 002a 0093     		str	r3, [sp]
+ 465 002c 2346     		mov	r3, r4
+ 466 002e 4422     		movs	r2, #68
+ 467 0030 D021     		movs	r1, #208
+ 468 0032 3046     		mov	r0, r6
+ 469 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 470              	.LVL32:
+  84:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 471              		.loc 1 84 3 is_stmt 1 view .LVU81
+ 472              		.loc 1 84 27 is_stmt 0 view .LVU82
+ 473 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 474              		.loc 1 84 9 view .LVU83
+ 475 003c 2B60     		str	r3, [r5]
+  85:sensor_drive/mpu6050.c ****   if(get_x_gyro_status == HAL_OK)
+ 476              		.loc 1 85 3 is_stmt 1 view .LVU84
+ 477              		.loc 1 85 5 is_stmt 0 view .LVU85
+ 478 003e 08B9     		cbnz	r0, .L33
+ 479              	.LVL33:
+ 480              	.L29:
+  86:sensor_drive/mpu6050.c ****   {
+  87:sensor_drive/mpu6050.c ****     return 0;
+  88:sensor_drive/mpu6050.c ****   }
+  89:sensor_drive/mpu6050.c ****   else 
+  90:sensor_drive/mpu6050.c ****   {
+  91:sensor_drive/mpu6050.c ****     return -1;
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 11
+
+
+  92:sensor_drive/mpu6050.c ****   }
+  93:sensor_drive/mpu6050.c **** }
+ 481              		.loc 1 93 1 view .LVU86
+ 482 0040 07B0     		add	sp, sp, #28
+ 483              	.LCFI18:
+ 484              		.cfi_remember_state
+ 485              		.cfi_def_cfa_offset 20
+ 486              		@ sp needed
+ 487 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 488              	.LVL34:
+ 489              	.L33:
+ 490              	.LCFI19:
+ 491              		.cfi_restore_state
+  91:sensor_drive/mpu6050.c ****   }
+ 492              		.loc 1 91 12 view .LVU87
+ 493 0044 4FF0FF30 		mov	r0, #-1
+ 494              	.LVL35:
+  91:sensor_drive/mpu6050.c ****   }
+ 495              		.loc 1 91 12 view .LVU88
+ 496 0048 FAE7     		b	.L29
+ 497              	.L35:
+ 498 004a 00BF     		.align	2
+ 499              	.L34:
+ 500 004c 00000000 		.word	hi2c1
+ 501              		.cfi_endproc
+ 502              	.LFE69:
+ 504              		.section	.text.get_mpu6050_y_gyro,"ax",%progbits
+ 505              		.align	1
+ 506              		.global	get_mpu6050_y_gyro
+ 507              		.syntax unified
+ 508              		.thumb
+ 509              		.thumb_func
+ 510              		.fpu softvfp
+ 512              	get_mpu6050_y_gyro:
+ 513              	.LVL36:
+ 514              	.LFB70:
+  94:sensor_drive/mpu6050.c **** int get_mpu6050_y_gyro(int* data)
+  95:sensor_drive/mpu6050.c **** {
+ 515              		.loc 1 95 1 is_stmt 1 view -0
+ 516              		.cfi_startproc
+ 517              		@ args = 0, pretend = 0, frame = 8
+ 518              		@ frame_needed = 0, uses_anonymous_args = 0
+ 519              		.loc 1 95 1 is_stmt 0 view .LVU90
+ 520 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 521              	.LCFI20:
+ 522              		.cfi_def_cfa_offset 20
+ 523              		.cfi_offset 4, -20
+ 524              		.cfi_offset 5, -16
+ 525              		.cfi_offset 6, -12
+ 526              		.cfi_offset 7, -8
+ 527              		.cfi_offset 14, -4
+ 528 0002 87B0     		sub	sp, sp, #28
+ 529              	.LCFI21:
+ 530              		.cfi_def_cfa_offset 48
+ 531 0004 0546     		mov	r5, r0
+  96:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 532              		.loc 1 96 3 is_stmt 1 view .LVU91
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 12
+
+
+  97:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 533              		.loc 1 97 3 view .LVU92
+  98:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_y_gyro_status;
+ 534              		.loc 1 98 3 view .LVU93
+  99:sensor_drive/mpu6050.c ****   get_y_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_YOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 535              		.loc 1 99 3 view .LVU94
+ 536              		.loc 1 99 23 is_stmt 0 view .LVU95
+ 537 0006 114E     		ldr	r6, .L41
+ 538 0008 0227     		movs	r7, #2
+ 539 000a 0297     		str	r7, [sp, #8]
+ 540 000c 0124     		movs	r4, #1
+ 541 000e 0194     		str	r4, [sp, #4]
+ 542 0010 0DF11703 		add	r3, sp, #23
+ 543 0014 0093     		str	r3, [sp]
+ 544 0016 2346     		mov	r3, r4
+ 545 0018 4522     		movs	r2, #69
+ 546 001a D021     		movs	r1, #208
+ 547 001c 3046     		mov	r0, r6
+ 548              	.LVL37:
+ 549              		.loc 1 99 23 view .LVU96
+ 550 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 551              	.LVL38:
+ 100:sensor_drive/mpu6050.c ****   get_y_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_YOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 552              		.loc 1 100 3 is_stmt 1 view .LVU97
+ 553              		.loc 1 100 23 is_stmt 0 view .LVU98
+ 554 0022 0297     		str	r7, [sp, #8]
+ 555 0024 0194     		str	r4, [sp, #4]
+ 556 0026 0DF11603 		add	r3, sp, #22
+ 557 002a 0093     		str	r3, [sp]
+ 558 002c 2346     		mov	r3, r4
+ 559 002e 4622     		movs	r2, #70
+ 560 0030 D021     		movs	r1, #208
+ 561 0032 3046     		mov	r0, r6
+ 562 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 563              	.LVL39:
+ 101:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 564              		.loc 1 101 3 is_stmt 1 view .LVU99
+ 565              		.loc 1 101 27 is_stmt 0 view .LVU100
+ 566 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 567              		.loc 1 101 9 view .LVU101
+ 568 003c 2B60     		str	r3, [r5]
+ 102:sensor_drive/mpu6050.c ****   if(get_y_gyro_status == HAL_OK)
+ 569              		.loc 1 102 3 is_stmt 1 view .LVU102
+ 570              		.loc 1 102 5 is_stmt 0 view .LVU103
+ 571 003e 08B9     		cbnz	r0, .L40
+ 572              	.LVL40:
+ 573              	.L36:
+ 103:sensor_drive/mpu6050.c ****   {
+ 104:sensor_drive/mpu6050.c ****     return 0;
+ 105:sensor_drive/mpu6050.c ****   }
+ 106:sensor_drive/mpu6050.c ****   else 
+ 107:sensor_drive/mpu6050.c ****   {
+ 108:sensor_drive/mpu6050.c ****     return -1;
+ 109:sensor_drive/mpu6050.c ****   }
+ 110:sensor_drive/mpu6050.c **** }
+ 574              		.loc 1 110 1 view .LVU104
+ 575 0040 07B0     		add	sp, sp, #28
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 13
+
+
+ 576              	.LCFI22:
+ 577              		.cfi_remember_state
+ 578              		.cfi_def_cfa_offset 20
+ 579              		@ sp needed
+ 580 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 581              	.LVL41:
+ 582              	.L40:
+ 583              	.LCFI23:
+ 584              		.cfi_restore_state
+ 108:sensor_drive/mpu6050.c ****   }
+ 585              		.loc 1 108 12 view .LVU105
+ 586 0044 4FF0FF30 		mov	r0, #-1
+ 587              	.LVL42:
+ 108:sensor_drive/mpu6050.c ****   }
+ 588              		.loc 1 108 12 view .LVU106
+ 589 0048 FAE7     		b	.L36
+ 590              	.L42:
+ 591 004a 00BF     		.align	2
+ 592              	.L41:
+ 593 004c 00000000 		.word	hi2c1
+ 594              		.cfi_endproc
+ 595              	.LFE70:
+ 597              		.section	.text.get_mpu6050_z_gyrp,"ax",%progbits
+ 598              		.align	1
+ 599              		.global	get_mpu6050_z_gyrp
+ 600              		.syntax unified
+ 601              		.thumb
+ 602              		.thumb_func
+ 603              		.fpu softvfp
+ 605              	get_mpu6050_z_gyrp:
+ 606              	.LVL43:
+ 607              	.LFB71:
+ 111:sensor_drive/mpu6050.c **** int get_mpu6050_z_gyrp(int* data)
+ 112:sensor_drive/mpu6050.c **** {
+ 608              		.loc 1 112 1 is_stmt 1 view -0
+ 609              		.cfi_startproc
+ 610              		@ args = 0, pretend = 0, frame = 8
+ 611              		@ frame_needed = 0, uses_anonymous_args = 0
+ 612              		.loc 1 112 1 is_stmt 0 view .LVU108
+ 613 0000 F0B5     		push	{r4, r5, r6, r7, lr}
+ 614              	.LCFI24:
+ 615              		.cfi_def_cfa_offset 20
+ 616              		.cfi_offset 4, -20
+ 617              		.cfi_offset 5, -16
+ 618              		.cfi_offset 6, -12
+ 619              		.cfi_offset 7, -8
+ 620              		.cfi_offset 14, -4
+ 621 0002 87B0     		sub	sp, sp, #28
+ 622              	.LCFI25:
+ 623              		.cfi_def_cfa_offset 48
+ 624 0004 0546     		mov	r5, r0
+ 113:sensor_drive/mpu6050.c ****   uint8_t msb_data;
+ 625              		.loc 1 113 3 is_stmt 1 view .LVU109
+ 114:sensor_drive/mpu6050.c ****   uint8_t lsb_data;
+ 626              		.loc 1 114 3 view .LVU110
+ 115:sensor_drive/mpu6050.c ****   HAL_StatusTypeDef get_z_gyro_status;
+ 627              		.loc 1 115 3 view .LVU111
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 14
+
+
+ 116:sensor_drive/mpu6050.c ****   get_z_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_ZOUT_H, I2C_MEMADD_SIZE_8BIT, &msb_
+ 628              		.loc 1 116 3 view .LVU112
+ 629              		.loc 1 116 23 is_stmt 0 view .LVU113
+ 630 0006 114E     		ldr	r6, .L48
+ 631 0008 0227     		movs	r7, #2
+ 632 000a 0297     		str	r7, [sp, #8]
+ 633 000c 0124     		movs	r4, #1
+ 634 000e 0194     		str	r4, [sp, #4]
+ 635 0010 0DF11703 		add	r3, sp, #23
+ 636 0014 0093     		str	r3, [sp]
+ 637 0016 2346     		mov	r3, r4
+ 638 0018 4722     		movs	r2, #71
+ 639 001a D021     		movs	r1, #208
+ 640 001c 3046     		mov	r0, r6
+ 641              	.LVL44:
+ 642              		.loc 1 116 23 view .LVU114
+ 643 001e FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 644              	.LVL45:
+ 117:sensor_drive/mpu6050.c ****   get_z_gyro_status = HAL_I2C_Mem_Read(&hi2c1, SlAVEADDER, GYRO_ZOUT_L, I2C_MEMADD_SIZE_8BIT, &lsb_
+ 645              		.loc 1 117 3 is_stmt 1 view .LVU115
+ 646              		.loc 1 117 23 is_stmt 0 view .LVU116
+ 647 0022 0297     		str	r7, [sp, #8]
+ 648 0024 0194     		str	r4, [sp, #4]
+ 649 0026 0DF11603 		add	r3, sp, #22
+ 650 002a 0093     		str	r3, [sp]
+ 651 002c 2346     		mov	r3, r4
+ 652 002e 4822     		movs	r2, #72
+ 653 0030 D021     		movs	r1, #208
+ 654 0032 3046     		mov	r0, r6
+ 655 0034 FFF7FEFF 		bl	HAL_I2C_Mem_Read
+ 656              	.LVL46:
+ 118:sensor_drive/mpu6050.c ****   *data = (msb_data >> 8) + lsb_data;
+ 657              		.loc 1 118 3 is_stmt 1 view .LVU117
+ 658              		.loc 1 118 27 is_stmt 0 view .LVU118
+ 659 0038 9DF81630 		ldrb	r3, [sp, #22]	@ zero_extendqisi2
+ 660              		.loc 1 118 9 view .LVU119
+ 661 003c 2B60     		str	r3, [r5]
+ 119:sensor_drive/mpu6050.c ****   if(get_z_gyro_status == HAL_OK)
+ 662              		.loc 1 119 3 is_stmt 1 view .LVU120
+ 663              		.loc 1 119 5 is_stmt 0 view .LVU121
+ 664 003e 08B9     		cbnz	r0, .L47
+ 665              	.LVL47:
+ 666              	.L43:
+ 120:sensor_drive/mpu6050.c ****   {
+ 121:sensor_drive/mpu6050.c ****     return 0;
+ 122:sensor_drive/mpu6050.c ****   }
+ 123:sensor_drive/mpu6050.c ****   else 
+ 124:sensor_drive/mpu6050.c ****   {
+ 125:sensor_drive/mpu6050.c ****     return -1;
+ 126:sensor_drive/mpu6050.c ****   }
+ 127:sensor_drive/mpu6050.c **** }...
+ 667              		.loc 1 127 1 view .LVU122
+ 668 0040 07B0     		add	sp, sp, #28
+ 669              	.LCFI26:
+ 670              		.cfi_remember_state
+ 671              		.cfi_def_cfa_offset 20
+ 672              		@ sp needed
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 15
+
+
+ 673 0042 F0BD     		pop	{r4, r5, r6, r7, pc}
+ 674              	.LVL48:
+ 675              	.L47:
+ 676              	.LCFI27:
+ 677              		.cfi_restore_state
+ 125:sensor_drive/mpu6050.c ****     return -1;
+ 678              		.loc 1 125 12 view .LVU123
+ 679 0044 4FF0FF30 		mov	r0, #-1
+ 680              	.LVL49:
+ 125:sensor_drive/mpu6050.c ****     return -1;
+ 681              		.loc 1 125 12 view .LVU124
+ 682 0048 FAE7     		b	.L43
+ 683              	.L49:
+ 684 004a 00BF     		.align	2
+ 685              	.L48:
+ 686 004c 00000000 		.word	hi2c1
+ 687              		.cfi_endproc
+ 688              	.LFE71:
+ 690              		.text
+ 691              	.Letext0:
+ 692              		.file 2 "/opt/gcc-arm-none-eabi-9-2020-q2-update/lib/gcc/arm-none-eabi/9.3.1/include/stddef.h"
+ 693              		.file 3 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/machine/_default_types.h"
+ 694              		.file 4 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_types.h"
+ 695              		.file 5 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/reent.h"
+ 696              		.file 6 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/lock.h"
+ 697              		.file 7 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/stdlib.h"
+ 698              		.file 8 "/opt/gcc-arm-none-eabi-9-2020-q2-update/arm-none-eabi/include/sys/_stdint.h"
+ 699              		.file 9 "Drivers/CMSIS/Include/core_cm3.h"
+ 700              		.file 10 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/system_stm32f1xx.h"
+ 701              		.file 11 "Drivers/CMSIS/Device/ST/STM32F1xx/Include/stm32f103xb.h"
+ 702              		.file 12 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_def.h"
+ 703              		.file 13 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h"
+ 704              		.file 14 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h"
+ 705              		.file 15 "Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h"
+ 706              		.file 16 "Core/Inc/i2c.h"
+ARM GAS  /var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s 			page 16
+
+
+DEFINED SYMBOLS
+                            *ABS*:0000000000000000 mpu6050.c
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:16     .text.mpu6050_init:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:24     .text.mpu6050_init:0000000000000000 mpu6050_init
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:128    .text.mpu6050_init:0000000000000078 $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:133    .text.get_mpu6050_x_acc:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:140    .text.get_mpu6050_x_acc:0000000000000000 get_mpu6050_x_acc
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:221    .text.get_mpu6050_x_acc:000000000000004c $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:226    .text.get_mpu6050_y_acc:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:233    .text.get_mpu6050_y_acc:0000000000000000 get_mpu6050_y_acc
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:314    .text.get_mpu6050_y_acc:000000000000004c $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:319    .text.get_mpu6050_z_acc:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:326    .text.get_mpu6050_z_acc:0000000000000000 get_mpu6050_z_acc
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:407    .text.get_mpu6050_z_acc:000000000000004c $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:412    .text.get_mpu6050_x_gyro:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:419    .text.get_mpu6050_x_gyro:0000000000000000 get_mpu6050_x_gyro
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:500    .text.get_mpu6050_x_gyro:000000000000004c $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:505    .text.get_mpu6050_y_gyro:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:512    .text.get_mpu6050_y_gyro:0000000000000000 get_mpu6050_y_gyro
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:593    .text.get_mpu6050_y_gyro:000000000000004c $d
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:598    .text.get_mpu6050_z_gyrp:0000000000000000 $t
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:605    .text.get_mpu6050_z_gyrp:0000000000000000 get_mpu6050_z_gyrp
+/var/folders/mx/xtmnkh9x46d2ktwbhj73try40000gn/T//ccbTGoUk.s:686    .text.get_mpu6050_z_gyrp:000000000000004c $d
+
+UNDEFINED SYMBOLS
+HAL_I2C_Mem_Write
+hi2c1
+HAL_I2C_Mem_Read
